@@ -34,6 +34,7 @@ module.exports = {
       colors: {
         background: 'var(--color-bg)',
         text: 'var(--color-text)',
+        textSecondary: 'var(--color-textSecondary)',
         accent: 'var(--color-accent)',
         surface: 'var(--color-surface)',
       },

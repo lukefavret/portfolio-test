@@ -51,6 +51,8 @@
     /* Original: #f8f7f1 */
     --color-text: #222222;
     /* Original: #222222 */
+    --color-textSecondary: #4A4A4A;
+    /* Original: #4A4A4A */
     --color-accent: #3b4c58;
     /* Original: #3b4c58 */
     --color-surface: #fbf6e8;
@@ -145,7 +147,7 @@
   /* A thin horizontal rule, used for separating sections. */
   .editorial-rule {
     border: none;
-    border-top: 1px solid theme('colors.text' / 0.5);
+    border-top: 1px solid theme('colors.textSecondary');
     margin: 2rem 0;
   }
 
@@ -154,7 +156,7 @@
     font-family: theme('fontFamily.mono');
     font-size: 0.875rem;
     /* 14px */
-    color: theme('colors.text' / 0.8);
+    color: theme('colors.textSecondary');
     text-transform: uppercase;
   }
 }

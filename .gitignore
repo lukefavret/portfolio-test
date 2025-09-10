@@ -19,6 +19,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Accessibility reports
 a11y-report.json
 
+#Media
+/public
+
 # Environment variables
 .env
 .env.*
