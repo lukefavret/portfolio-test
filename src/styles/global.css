@@ -45,10 +45,12 @@
      * --color-bg: The primary background color of the site.
      * --color-text: The primary text color for body content.
      * --color-accent: The accent color for links, highlights, and active states.
+     * --color-surface: A secondary background color for UI elements like headers or cards.
      */
     --color-bg: #fbf6e8;
     --color-text: #222222;
     --color-accent: #3b4c58;
+    --color-surface: #efe0c0;
 
     /* Base font settings */
     font-family: theme('fontFamily.body');
@@ -141,6 +143,43 @@
     font-size: 0.875rem; /* 14px */
     color: theme('colors.text' / 0.8);
     text-transform: uppercase;
+  }
+}
+
+@layer components {
+  /*
+   * =================================================================
+   * TAG COLOR SYSTEM
+   *
+   * Provides a set of background colors for project tags.
+   * A `--tag-bg` variable is defined for each, allowing for easy
+   * customization and ensuring text contrast is maintained.
+   * =================================================================
+   */
+  .tag-ux-design {
+    --tag-bg: #add8e6; /* lightblue */
+    background-color: var(--tag-bg);
+    color: var(--color-text);
+  }
+  .tag-ai {
+    --tag-bg: #90ee90; /* lightgreen */
+    background-color: var(--tag-bg);
+    color: var(--color-text);
+  }
+  .tag-full-stack-dev {
+    --tag-bg: #f08080; /* lightcoral */
+    background-color: var(--tag-bg);
+    color: var(--color-text);
+  }
+  .tag-branding {
+    --tag-bg: #ffb6c1; /* lightpink */
+    background-color: var(--tag-bg);
+    color: var(--color-text);
+  }
+  .tag-research {
+    --tag-bg: #fafad2; /* lightgoldenrodyellow */
+    background-color: var(--tag-bg);
+    color: var(--color-text);
   }
 }
 

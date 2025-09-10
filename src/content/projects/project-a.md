@@ -7,6 +7,7 @@ discipline: 'Design & Development'
 displayedDate: 'Summer 2025'
 hasPrototype: true
 prototypeUrl: 'https://example.com'
+repoUrl: 'https://github.com/TODO'
 media:
   thumbnailImage: '/media/placeholder-16-9.png'
   hoverVideo: '/media/placeholder-video.mp4'

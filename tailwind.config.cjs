@@ -30,6 +30,7 @@ module.exports = {
         background: 'var(--color-bg)',
         text: 'var(--color-text)',
         accent: 'var(--color-accent)',
+        surface: 'var(--color-surface)',
       },
 
       // Defines the custom font families for the project.

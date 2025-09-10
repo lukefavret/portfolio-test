@@ -35,6 +35,8 @@ const projectsCollection = defineCollection({
     hasPrototype: z.boolean().optional(),
     /** The URL for the live prototype, if it exists. */
     prototypeUrl: z.string().url().optional(),
+    /** The URL for the git repository, if it exists. */
+    repoUrl: z.string().url().optional(),
     /** An object containing paths to media assets. */
     media: z.object({
       /** The primary thumbnail image for the project card. */

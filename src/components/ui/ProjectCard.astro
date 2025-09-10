@@ -3,6 +3,7 @@
 import type { CollectionEntry } from 'astro:content';
 import Tag from '@components/ui/Tag.astro';
 import Icon from '@components/utility/Icon.astro';
+import Button from '@components/ui/Button.astro';
 
 /**
  * Project Card Component
@@ -24,7 +25,10 @@ export interface Props {
 
 const { project } = Astro.props;
 const { slug, data } = project;
-const { title, summary, tags, media, hasPrototype, prototypeUrl } = data;
+const { title, summary, tags, media, hasPrototype, prototypeUrl, repoUrl } = data;
+
+// Shared classes for the small action buttons on the card.
+const buttonClasses = 'text-xs px-4 py-2';
 ---
 
 <article class="group relative flex flex-col">
@@ -94,7 +98,7 @@ const { title, summary, tags, media, hasPrototype, prototypeUrl } = data;
       tags && (
         <div class="order-first flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <Tag>{tag}</Tag>
+            <Tag name={tag} />
           ))}
         </div>
       )
@@ -103,31 +107,41 @@ const { title, summary, tags, media, hasPrototype, prototypeUrl } = data;
     <p class="mt-2 flex-grow text-text/80">{summary}</p>
 
     <!-- Action Links -->
-    <div class="mt-4 flex items-center gap-x-4 font-mono uppercase">
-      <a
+    <div class="mt-4 flex flex-wrap items-center gap-2 font-mono uppercase">
+      <Button
         href={`/portfolio/${slug}/`}
-        class="focus-ring group/link inline-flex items-center gap-x-2 text-sm text-accent"
+        variant="tertiary"
+        iconRight="arrowRight"
+        class={buttonClasses}
       >
         See the Process
-        <Icon
-          name="arrowRight"
-          class="h-4 w-4 transition-transform duration-200 group-hover/link:translate-x-1"
-        />
-      </a>
+      </Button>
       {
         hasPrototype && prototypeUrl && (
-          <a
+          <Button
             href={prototypeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="focus-ring group/link inline-flex items-center gap-x-2 text-sm text-accent"
+            variant="tertiary"
+            iconRight="externalLink"
+            class={buttonClasses}
           >
             Try Prototype
-            <Icon
-              name="externalLink"
-              class="h-4 w-4 transition-transform duration-200 group-hover/link:scale-110"
-            />
-          </a>
+          </Button>
+        )
+      }
+      {
+        repoUrl && (
+          <Button
+            href={repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="tertiary"
+            iconRight="github"
+            class={buttonClasses}
+          >
+            View Repo
+          </Button>
         )
       }
     </div>
