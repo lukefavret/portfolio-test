@@ -21,6 +21,11 @@ module.exports = {
   // Specifies the files to scan for Tailwind classes.
   // This includes Astro components, layouts, pages, and Preact components.
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    {
+      pattern: /^tag-.*/,
+    },
+  ],
 
   theme: {
     extend: {
@@ -32,6 +37,7 @@ module.exports = {
         accent: 'var(--color-accent)',
         surface: 'var(--color-surface)',
       },
+      //test
 
       // Defines the custom font families for the project.
       // Fallback fonts are chosen to maintain a similar feel if the primary font fails to load.

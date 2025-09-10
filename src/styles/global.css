@@ -47,10 +47,14 @@
      * --color-accent: The accent color for links, highlights, and active states.
      * --color-surface: A secondary background color for UI elements like headers or cards.
      */
-    --color-bg: #fbf6e8;
+    --color-bg: #f8f7f1;
+    /* Original: #f8f7f1 */
     --color-text: #222222;
+    /* Original: #222222 */
     --color-accent: #3b4c58;
-    --color-surface: #efe0c0;
+    /* Original: #3b4c58 */
+    --color-surface: #fbf6e8;
+    /* Original: #fbf6e8 */
 
     /* Base font settings */
     font-family: theme('fontFamily.body');
@@ -79,7 +83,8 @@
 
   /* Set the base font size and line height for responsive typography. */
   html {
-    font-size: 100%; /* 16px */
+    font-size: 100%;
+    /* 16px */
     line-height: 1.5;
   }
 
@@ -110,16 +115,23 @@
   }
 
   h1 {
-    font-size: 2.5rem; /* 40px */
+    font-size: 2.5rem;
+    /* 40px */
   }
+
   h2 {
-    font-size: 2rem; /* 32px */
+    font-size: 2rem;
+    /* 32px */
   }
+
   h3 {
-    font-size: 1.75rem; /* 28px */
+    font-size: 1.75rem;
+    /* 28px */
   }
+
   h4 {
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
+    /* 20px */
   }
 
   /*
@@ -140,13 +152,15 @@
   /* Style for figure numbers, e.g., "fig. 1." */
   .fig-label {
     font-family: theme('fontFamily.mono');
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
+    /* 14px */
     color: theme('colors.text' / 0.8);
     text-transform: uppercase;
   }
 }
 
 @layer components {
+
   /*
    * =================================================================
    * TAG COLOR SYSTEM
@@ -157,27 +171,36 @@
    * =================================================================
    */
   .tag-ux-design {
-    --tag-bg: #add8e6; /* lightblue */
+    --tag-bg: #add8e6;
+    /* lightblue */
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
+
   .tag-ai {
-    --tag-bg: #90ee90; /* lightgreen */
+    --tag-bg: #90ee90;
+    /* lightgreen */
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
+
   .tag-full-stack-dev {
-    --tag-bg: #f08080; /* lightcoral */
+    --tag-bg: #f08080;
+    /* lightcoral */
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
+
   .tag-branding {
-    --tag-bg: #ffb6c1; /* lightpink */
+    --tag-bg: #ffb6c1;
+    /* lightpink */
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
+
   .tag-research {
-    --tag-bg: #fafad2; /* lightgoldenrodyellow */
+    --tag-bg: #c978ff;
+    /* lightgoldenrodyellow */
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
@@ -202,11 +225,14 @@
   }
 
   /* Avoid page breaks inside these elements for better readability. */
-  h2, h3, h4 {
+  h2,
+  h3,
+  h4 {
     page-break-after: avoid;
   }
 
-  figure, blockquote {
+  figure,
+  blockquote {
     page-break-inside: avoid;
   }
 
