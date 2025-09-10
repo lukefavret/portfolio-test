@@ -1,0 +1,77 @@
+---
+// src/pages/contact.astro
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import EmailObfuscator from '@components/interactive/EmailObfuscator.tsx';
+
+/**
+ * Contact Page
+ *
+ * Provides clear ways to get in touch. The primary method is email,
+ * which is rendered using a client-side component to provide basic
+ * protection against spam bots.
+ */
+
+const pageTitle = 'Contact';
+const pageDescription =
+  'Get in touch to discuss new opportunities, interesting projects, or to share notes.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="mx-auto max-w-xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
+    <header>
+      <h1 class="font-heading text-4xl font-bold uppercase tracking-wider sm:text-5xl">
+        Get In Touch
+      </h1>
+    </header>
+
+    <div class="prose prose-lg mx-auto mt-8">
+      <p>
+        I'm always open to discussing new opportunities or interesting
+        projects. I also welcome students and peers to reach out if they'd like
+        to share notes or have any questions.
+      </p>
+      <p>The best way to reach me is via email.</p>
+    </div>
+
+    <!--
+      Email Obfuscator Component
+      - `client:load` ensures the JS runs to construct the mailto link.
+      - TODO: The user must replace these placeholder values.
+    -->
+    <div class="mt-8">
+      <EmailObfuscator
+        client:load
+        user="EMAIL_USER_HERE"
+        domain="EMAIL_DOMAIN_HERE"
+      />
+    </div>
+
+    <hr class="editorial-rule" />
+
+    <div class="mt-8">
+      <p class="mb-4 text-lg">Feel free to connect on other platforms:</p>
+      <div class="flex items-center justify-center gap-4">
+        <!-- TODO: User must replace these placeholder hrefs. -->
+        <Button
+          href="https://github.com/TODO"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="secondary"
+          iconLeft="github"
+        >
+          GitHub
+        </Button>
+        <Button
+          href="https://linkedin.com/in/TODO"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="secondary"
+          iconLeft="linkedin"
+        >
+          LinkedIn
+        </Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

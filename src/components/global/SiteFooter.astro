@@ -1,0 +1,74 @@
+---
+// src/components/global/SiteFooter.astro
+import Icon from '@components/utility/Icon.astro';
+
+/**
+ * Site Footer Component
+ *
+ * Renders the site-wide footer. It serves as a `<footer>` landmark,
+ * providing users with copyright information, privacy policy, and
+ * links to external professional profiles.
+ *
+ * Accessibility:
+ * - Uses a `<footer>` element for semantic structure.
+ * - Social media links have `aria-label`s to provide context, as the
+ *   icon itself is not descriptive text.
+ */
+
+// --- PROPS ---
+// The `class` prop allows passing additional CSS classes from the parent.
+const { class: className } = Astro.props;
+
+// Get the current year for the copyright notice.
+const currentYear = new Date().getFullYear();
+
+// Define social media links.
+// TODO: User should replace these placeholder URLs with their own.
+const socialLinks = [
+  {
+    href: 'https://github.com/TODO',
+    label: 'View my projects on GitHub',
+    icon: 'github',
+  },
+  {
+    href: 'https://linkedin.com/in/TODO',
+    label: 'Connect with me on LinkedIn',
+    icon: 'linkedin',
+  },
+];
+---
+
+<footer
+  class:list={[
+    'w-full border-t border-text/20 bg-surface/80 text-text/80',
+    className,
+  ]}
+>
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <!-- Copyright and Privacy -->
+      <div class="text-sm">
+        <span>&copy; {2025} Luke Favret</span>
+        <span class="mx-2" aria-hidden="true">|</span>
+        <a href="/privacy" class="focus-ring hover:text-accent">Privacy Policy</a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex items-center gap-x-4">
+        {
+          socialLinks.map((link) => (
+            <a
+              href={link.href}
+              aria-label={link.label}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="focus-ring rounded-full p-2 hover:bg-text/10"
+            >
+              <Icon name={link.icon} class="h-6 w-6" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,139 @@
+---
+// src/pages/portfolio/[slug].astro
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import MetaBar from '@components/ui/MetaBar.astro';
+import HeroFigure from '@components/ui/HeroFigure.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/utility/Icon.astro';
+
+/**
+ * Dynamic Case Study Page
+ *
+ * This file is a dynamic route that generates a page for each project
+ * in the `projects` content collection. It uses `getStaticPaths` to
+ * create the routes at build time.
+ *
+ * The layout is designed to resemble an editorial or patent document,
+ * with a clear, structured presentation of the project's details.
+ */
+
+// This function tells Astro which pages to build.
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+// --- PROPS ---
+// The `project` prop is passed from `getStaticPaths`.
+type Props = {
+  project: CollectionEntry<'projects'>;
+};
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, summary, date, discipline, displayedDate } = project.data;
+
+// Format the date for display in the MetaBar.
+const formattedPublishDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+});
+---
+
+<BaseLayout title={title} description={summary}>
+  <article>
+    <!-- Metadata Bar at the top of the page. -->
+    <MetaBar
+      discipline={discipline}
+      publishedDate={`Published ${formattedPublishDate}`}
+    />
+
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <!-- Project Header -->
+      <header class="text-center">
+        <h1 class="font-heading text-4xl font-bold uppercase tracking-wider sm:text-5xl">
+          {title}
+        </h1>
+        <p class="mt-2 font-mono text-lg text-text/80">
+          {displayedDate || formattedPublishDate}
+        </p>
+      </header>
+
+      <!-- Hero Media -->
+      <HeroFigure
+        figNumber="2"
+        caption="The User Flow of The Website. (Placeholder caption)"
+      >
+        <!-- This is a placeholder for the hero media. -->
+        <div class="aspect-video w-full bg-background">
+          <!-- TODO: Replace with actual project hero image or video. -->
+        </div>
+      </HeroFigure>
+
+      <!-- STAR Overview Section (from the Markdown content) -->
+      <!-- The content up to the "Full Case Study" heading is rendered here. -->
+      <div id="star-overview" class="prose prose-lg mx-auto max-w-prose">
+        <Content />
+      </div>
+
+      <!-- Call to Action Button to scroll to the full case study -->
+      <div class="mt-16 text-center">
+        <!-- TODO: This smooth-scroll functionality currently isn't implemented.
+             A small script would be needed to handle this while respecting
+             prefers-reduced-motion. For now, it's a visual placeholder. -->
+        <Button href="#full-case-study" variant="primary" iconRight="arrowDown">
+          Unroll Detailed Case Study
+        </Button>
+      </div>
+
+      <hr class="editorial-rule mt-16" />
+
+      <!-- Full Case Study Section -->
+      <section id="full-case-study" aria-labelledby="full-case-study-heading">
+        <h2
+          id="full-case-study-heading"
+          class="font-heading text-3xl font-bold"
+        >
+          fig. 3. Full Case Study
+        </h2>
+        <div class="prose prose-lg mx-auto mt-8 max-w-prose">
+          <!-- TODO: Replace this with the actual detailed content from the CMS/Markdown. -->
+          <p>
+            This section would contain the full, unrolled case study, with
+            detailed explanations, more images, and in-depth analysis of the
+            project's lifecycle. For this placeholder, we are just showing
+            this explanatory text.
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /*
+    Simple prose styling for the Markdown content.
+    This can be expanded with a typography plugin like `@tailwindcss/typography`.
+  */
+  .prose h2 {
+    font-family: theme('fontFamily.heading');
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+  }
+  .prose p {
+    font-family: theme('fontFamily.body');
+    margin-bottom: 1em;
+  }
+  .prose strong {
+    font-weight: 700;
+  }
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+  }
+</style>

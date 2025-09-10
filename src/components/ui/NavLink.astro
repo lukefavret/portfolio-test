@@ -1,0 +1,62 @@
+---
+// src/components/ui/NavLink.astro
+
+/**
+ * Navigation Link Component
+ *
+ * A reusable component for navigation links that automatically detects
+ * when it is "active" (i.e., it points to the current page).
+ *
+ * Accessibility:
+ * - When active, it applies `aria-current="page"` to programmatically
+ *   inform assistive technologies that this link represents the current page.
+ *   This is a key accessibility feature for navigation.
+ *
+ * Styling:
+ * - Active links are visually distinguished with a bold font weight and
+ *   the site's accent color.
+ * - It includes the `.focus-ring` class for visible keyboard focus.
+ */
+
+// --- PROPS ---
+export interface Props {
+  /** The URL the link should point to. */
+  href: string;
+}
+
+const { href } = Astro.props;
+
+// Determine if this link is for the current page.
+// We compare the link's href with the current page's pathname from Astro's global.
+// Note: `Astro.url.pathname` includes a trailing slash for root paths, so we
+// need to handle that for accurate comparison.
+const isActive =
+  href === Astro.url.pathname || href === Astro.url.pathname.slice(0, -1);
+---
+
+<a
+  href={href}
+  class:list={[
+    'focus-ring relative rounded-md px-3 py-2 transition-colors duration-200 hover:bg-text/5',
+    // Apply active styles if `isActive` is true.
+    {
+      'font-bold text-accent': isActive,
+      'text-text': !isActive,
+    },
+  ]}
+  aria-current={isActive ? 'page' : false}
+>
+  <slot />
+  {
+    /*
+      Add a visual indicator for the active link (a small dot).
+      This is a subtle design detail that reinforces the active state.
+    */
+    isActive && (
+      <span
+        class="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent"
+        aria-hidden="true"
+      />
+    )
+  }
+</a>

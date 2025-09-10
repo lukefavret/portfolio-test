@@ -1,0 +1,42 @@
+---
+// src/components/ui/HeroFigure.astro
+
+/**
+ * Hero Figure Component
+ *
+ * A component for displaying a prominent figure (image or video) with a
+ * styled caption, as seen on the case study pages. It adheres to the
+ * "patent document" aesthetic.
+ *
+ * Props:
+ * - `caption`: The text for the figure's caption.
+ * - `figNumber`: The number to display in the "fig. X." label.
+ *
+ * It uses a <slot> for the actual media, allowing it to be flexible
+ * for either images or video placeholders.
+ */
+
+// --- PROPS ---
+export interface Props {
+  /** The caption text to display below the figure. */
+  caption: string;
+  /** The figure number (e.g., '1', '2'). */
+  figNumber: string;
+}
+
+const { caption, figNumber } = Astro.props;
+---
+
+<figure class="my-8 flex flex-col items-center text-center">
+  <!-- Media Slot -->
+  <div class="mb-4 w-full max-w-4xl border border-text/20 bg-background p-2">
+    <!-- The actual media (e.g., an <img> or a placeholder div) goes here. -->
+    <slot />
+  </div>
+
+  <!-- Figcaption -->
+  <figcaption class="max-w-xl">
+    <span class="fig-label">fig. {figNumber}.</span>
+    <span class="font-mono text-sm text-text/80">{caption}</span>
+  </figcaption>
+</figure>

@@ -1,0 +1,68 @@
+---
+// src/components/ui/Button.astro
+import { Icon } from 'astro-icon/components';
+
+/**
+ * Button Component
+ *
+ * A versatile and accessible button component that can render as either a
+ * `<button>` or an `<a>` tag, depending on whether an `href` prop is provided.
+ *
+ * Props:
+ * - `href`: If provided, the component renders as an anchor tag.
+ * - `variant`: 'primary', 'secondary', or 'tertiary' for styling.
+ * - `iconLeft`/`iconRight`: Optional icon to display.
+ * - `class`: Allows passing additional CSS classes.
+ * - `...rest`: All other props are passed to the underlying <button> or <a>.
+ *
+ * Accessibility:
+ * - Automatically applies the `.focus-ring` utility.
+ * - Renders the correct semantic element (`button` vs `a`).
+ */
+import type { HTMLAttributes } from 'astro/types';
+import AstroIcon from '@components/utility/Icon.astro';
+
+// --- PROPS ---
+export interface Props extends HTMLAttributes<'a'> {
+  /** If provided, the component will be an anchor tag. */
+  href?: string;
+  /** The visual style of the button. */
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  /** Optional: name of the icon to display on the left. */
+  iconLeft?: string;
+  /** Optional: name of the icon to display on the right. */
+  iconRight?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  class: className,
+  iconLeft,
+  iconRight,
+  ...rest
+} = Astro.props;
+
+// Determine the base classes for the button based on its variant.
+const baseClasses =
+  'focus-ring inline-flex items-center justify-center gap-x-2 rounded-sm px-6 py-3 text-center font-bold uppercase tracking-wider transition-colors duration-200';
+
+const variantClasses = {
+  primary: 'bg-accent text-background hover:bg-accent/90',
+  secondary:
+    'border border-text/50 bg-transparent text-text hover:bg-text/5',
+  tertiary: 'border border-accent/50 bg-transparent text-accent hover:bg-accent/10',
+};
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  class:list={[baseClasses, variantClasses[variant], className]}
+  {...rest}
+>
+  {iconLeft && <AstroIcon name={iconLeft} class="h-5 w-5" />}
+  <slot />
+  {iconRight && <AstroIcon name={iconRight} class="h-5 w-5" />}
+</Tag>
