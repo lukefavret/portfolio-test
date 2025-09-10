@@ -38,7 +38,6 @@ module.exports = {
         accent: 'var(--color-accent)',
         surface: 'var(--color-surface)',
       },
-      //test
 
       // Defines the custom font families for the project.
       // Fallback fonts are chosen to maintain a similar feel if the primary font fails to load.

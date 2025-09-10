@@ -7,6 +7,14 @@ import '../styles/FocusRing.css';
 // TODO: These components will be created in the next step.
 import SiteHeader from '@components/global/SiteHeader.astro';
 import SiteFooter from '@components/global/SiteFooter.astro';
+import font400Url from '@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2';
+import font700Url from '@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2';
+import cormorant400Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-normal.woff2";
+import cormorant700Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2";
+import ibmMono400Url from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2";
+import ibmMono500Url from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2";
+
+
 
 /**
  * Base Layout Component
@@ -74,6 +82,18 @@ const fullTitle = `${title} | Wright Portfolio`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Preload self-hosted fonts for performance -->
+    <link rel="preload" as="font" href={font400Url} type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href={font700Url} type="font/woff2" crossorigin>
+
+    <link rel="preload" as="font" href={cormorant400Url} type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href={cormorant700Url} type="font/woff2" crossorigin>
+
+    <link rel="preload" as="font" href={ibmMono400Url} type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href={ibmMono500Url} type="font/woff2" crossorigin>
+
+    
 
     <!-- Open Graph (Facebook, etc.) and Twitter Card meta tags for social sharing. -->
     <meta property="og:title" content={fullTitle} />
