@@ -1,0 +1,61 @@
+---
+// src/components/utility/Icon.astro
+
+/**
+ * SVG Icon Component
+ *
+ * A performant and accessible component for rendering inline SVG icons.
+ * It uses a simple lookup to return the path data for a given icon name.
+ * This avoids loading a large icon library and allows for direct CSS styling.
+ *
+ * Props:
+ * - name: The identifier for the icon to render.
+ * - All other attributes (e.g., `class`) are passed to the <svg> element.
+ *
+ * Accessibility:
+ * - `aria-hidden="true"` is set by default because icons are typically
+ *   decorative. If an icon is used as a standalone interactive element,
+ *   it MUST be wrapped in a button or link with an appropriate `aria-label`.
+ *   See `SiteFooter.astro` for an example.
+ */
+
+export interface Props extends astroHTML.JSX.SVGAttributes {
+  /** The name of the icon to display. */
+  name: string;
+}
+
+const { name, ...rest } = Astro.props;
+
+// A lookup object for SVG path data.
+// Adding a new icon is as simple as adding a new key-value pair.
+// TODO: Add more icons as needed.
+const ICONS = {
+  github: 'M9 19c-4.28 1.22-4.28-2-4.28-2S4 15.36 4 14.22c0-1.23.93-1.13.93-1.13.9-.07 1.63.83 1.63.83.8 1.36 2.1 1 2.63.76.08-.6.3-1 .55-1.23-2-2.26-4.1-1.13-4.1-5 0-1.1.4-2 .93-2.7-.1-.26-.4-1.26.1-2.66 0 0 .76-.23 2.5 1 .7-.2 1.45-.3 2.2-.3.75 0 1.5.1 2.2.3 1.7-1.23 2.5-1 2.5-1 .5 1.4.2 2.4.1 2.66.5.7.9 1.6.9 2.7 0 3.87-2.1 2.7-4.1 5 .25.2.48.6.48 1.2v2.44c0 .3.25.6.8.5 4.28-1.22 4.28 2 4.28 2Z',
+  linkedin: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM6 9H2V21h4V9zM4 6a2 2 0 1 1 4 0 2 2 0 0 1-4 0z',
+  arrowRight: 'm13.293 12.707-5-5a1 1 0 0 0-1.414 1.414L11.172 12l-4.293 4.293a1 1 0 1 0 1.414 1.414l5-5a1 1 0 0 0 0-1.414z',
+  arrowDown: 'm12 13.172-4.293-4.293a1 1 0 1 0-1.414 1.414L12 15.586l5.707-5.707a1 1 0 0 0-1.414-1.414L12 13.172z',
+  externalLink: 'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m4-3h6v6m-11 5L21 3',
+  play: 'M6 4l12 8-12 8V4z',
+  unroll: 'M3 12h18M3 6h18M3 18h18',
+};
+
+const path = ICONS[name];
+---
+
+{
+  path && (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      {...rest}
+    >
+      <path d={path} />
+    </svg>
+  )
+}

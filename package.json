@@ -1,0 +1,35 @@
+{
+  "name": "astro-portfolio-wright",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node_modules/.bin/astro dev",
+    "start": "node_modules/.bin/astro dev",
+    "build": "node_modules/.bin/astro build",
+    "preview": "node_modules/.bin/astro preview",
+    "astro": "node_modules/.bin/astro",
+    "lint": "node_modules/.bin/eslint .",
+    "format": "node_modules/.bin/prettier --write . --plugin=prettier-plugin-astro --plugin=prettier-plugin-tailwindcss",
+    "check:a11y": "node_modules/.bin/axe http://localhost:4321/ --save a11y-report.json"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^3.5.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.11.5",
+    "preact": "^10.22.1",
+    "tailwindcss": "^3.4.6"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.9.2",
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^1.2.3",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "prettier": "^3.3.2",
+    "prettier-plugin-astro": "^0.14.0",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "typescript": "^5.5.3"
+  }
+}

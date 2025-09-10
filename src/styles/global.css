@@ -1,0 +1,184 @@
+/*
+ * =================================================================
+ * GLOBAL STYLES
+ *
+ * This file defines the foundational styles for the entire site.
+ * - It sets up CSS variables for the color theme.
+ * - It imports the custom fonts required for the "Wright patent" aesthetic.
+ * - It applies base styles to the `html` and `body` for typography and accessibility.
+ * - It includes custom utility classes for the editorial design.
+ * =================================================================
+ */
+
+/*
+ * -----------------------------------------------------------------
+ * FONT IMPORTS
+ *
+ * We are importing three font families:
+ * 1. Cormorant Garamond: An elegant serif for headings.
+ * 2. Atkinson Hyperlegible: A highly readable sans-serif for body text.
+ * 3. IBM Plex Mono: A clean monospaced font for accents.
+ *
+ * TODO: For production, these fonts should be self-hosted for performance
+ * and privacy. The README.md will contain instructions on how to do this.
+ * -----------------------------------------------------------------
+ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
+/*
+ * -----------------------------------------------------------------
+ * TAILWIND LAYERS & THEME VARIABLES
+ *
+ * We inject Tailwind's base, components, and utilities layers here.
+ * This is also where we define the CSS variables that power our
+ * Tailwind theme (see `tailwind.config.cjs`).
+ * -----------------------------------------------------------------
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /*
+     * --color-bg: The primary background color of the site.
+     * --color-text: The primary text color for body content.
+     * --color-accent: The accent color for links, highlights, and active states.
+     */
+    --color-bg: #fbf6e8;
+    --color-text: #222222;
+    --color-accent: #3b4c58;
+
+    /* Base font settings */
+    font-family: theme('fontFamily.body');
+    color: theme('colors.text');
+    background-color: theme('colors.background');
+
+    /* Enable smooth scrolling, but respect user preference for reduced motion. */
+    scroll-behavior: smooth;
+  }
+
+  /* Respect user preference for reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Set the base font size and line height for responsive typography. */
+  html {
+    font-size: 100%; /* 16px */
+    line-height: 1.5;
+  }
+
+  /* Apply a subtle text rendering optimization. */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /*
+   * -----------------------------------------------------------------
+   * HEADING STYLES
+   *
+   * Headings use the `Cormorant Garamond` font for an editorial look.
+   * They have generous spacing to create a clear visual hierarchy.
+   * -----------------------------------------------------------------
+   */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: theme('fontFamily.heading');
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+  }
+
+  h1 {
+    font-size: 2.5rem; /* 40px */
+  }
+  h2 {
+    font-size: 2rem; /* 32px */
+  }
+  h3 {
+    font-size: 1.75rem; /* 28px */
+  }
+  h4 {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  /*
+   * -----------------------------------------------------------------
+   * EDITORIAL UTILITIES
+   *
+   * Custom classes for the patent-document aesthetic.
+   * -----------------------------------------------------------------
+   */
+
+  /* A thin horizontal rule, used for separating sections. */
+  .editorial-rule {
+    border: none;
+    border-top: 1px solid theme('colors.text' / 0.5);
+    margin: 2rem 0;
+  }
+
+  /* Style for figure numbers, e.g., "fig. 1." */
+  .fig-label {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.875rem; /* 14px */
+    color: theme('colors.text' / 0.8);
+    text-transform: uppercase;
+  }
+}
+
+/*
+ * -----------------------------------------------------------------
+ * PRINT STYLES
+ *
+ * A dedicated layer for print-specific CSS. This ensures that
+ * pages like the resume are formatted cleanly when printed or
+ * saved as a PDF.
+ * -----------------------------------------------------------------
+ */
+@media print {
+  body {
+    /* Use basic fonts for printing to ensure compatibility. */
+    font-family: 'Times New Roman', serif;
+    font-size: 11pt;
+    color: #000;
+    background-color: #fff;
+  }
+
+  /* Avoid page breaks inside these elements for better readability. */
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  figure, blockquote {
+    page-break-inside: avoid;
+  }
+
+  /* Hide elements that are not relevant for a printed version. */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ensure links are still identifiable without color. */
+  a {
+    text-decoration: underline;
+    color: #000;
+  }
+}
