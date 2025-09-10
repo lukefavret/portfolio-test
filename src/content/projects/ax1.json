@@ -1,0 +1,16 @@
+{
+  "title": "LSL Harness",
+  "slug": "lsl-harness",
+  "summary": "Placeholder summary for LSL Harness.",
+  "date": "2025-09-05",
+  "tags": ["Python", "Research"],
+  "hasPrototype": true,
+  "prototypeUrl": "https://example.com/alpha",
+  "media": {
+    "thumbnailImage": "/media/alpha-thumb.jpg",
+    "hoverVideo": "/media/alpha-hover.mp4",
+    "alt": "Screenshot of Project Alpha interface"
+  },
+  "discipline": "Research SWE/Devex",
+  "displayedDate": "September 2025"
+}

@@ -1,9 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Wordmark font style */
+.wordmark {
+  font-family: 'Cormorant SC', serif;
+  font-weight: 700;
+}
+
 :root {
   --color-bg: #FBF6E8;
+  --color-header: #EFE0C0;
   --color-text: #222222;
   --color-accent: #3B4C58;
 }

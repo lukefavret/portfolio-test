@@ -1,0 +1,16 @@
+{
+  "title": "ARC3 Framework",
+  "slug": "arc3-framework",
+  "summary": "Placeholder summary for ARC3 Framework.",
+  "date": "2025-09-05",
+  "tags": ["Research"],
+  "hasPrototype": false,
+  "prototypeUrl": "https://example.com/alpha",
+  "media": {
+    "thumbnailImage": "/media/alpha-thumb.jpg",
+    "hoverVideo": "/media/alpha-hover.mp4",
+    "alt": "Screenshot of ARC3 Framework interface"
+  },
+  "discipline": "None",
+  "displayedDate": "September 2025"
+}
