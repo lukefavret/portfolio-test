@@ -4,6 +4,7 @@
   "summary": "Placeholder summary for Project Alpha.",
   "date": "2024-02-01",
   "tags": ["UI", "Research"],
+  "featured": true,
   "hasPrototype": true,
   "prototypeUrl": "https://example.com/alpha",
   "media": {

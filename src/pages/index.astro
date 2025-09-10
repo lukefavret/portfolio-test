@@ -5,7 +5,10 @@ import SiteFooter from '../components/SiteFooter.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
-const projects = (await getCollection('projects')).sort((a,b)=> new Date(b.data.date)-new Date(a.data.date)).slice(0,4);
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+  .slice(0, 4);
 ---
 <BaseLayout title="Home">
   <SiteHeader />

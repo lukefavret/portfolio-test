@@ -4,6 +4,7 @@
   "summary": "Placeholder summary for LSL Harness.",
   "date": "2025-09-05",
   "tags": ["Python", "Research"],
+  "featured": true,
   "hasPrototype": true,
   "prototypeUrl": "https://example.com/alpha",
   "media": {
