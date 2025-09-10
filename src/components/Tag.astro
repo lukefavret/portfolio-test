@@ -1,6 +1,8 @@
 ---
 /** Visual tag label. */
+import { TAG_COLORS, DEFAULT_TAG_COLOR } from '../data/tagColors';
 export interface Props { label: string }
 const { label } = Astro.props as Props;
+const color = TAG_COLORS[label] ?? DEFAULT_TAG_COLOR;
 ---
-<span class="text-xs border border-accent px-2 py-1 rounded">{label}</span>
+<span class={`text-xs px-2 py-1 rounded border ${color.bg} ${color.text} ${color.border}`}>{label}</span>
