@@ -201,7 +201,7 @@
   }
 
   .tag-research {
-    --tag-bg: #c978ff;
+    --tag-bg: #fafad2;
     /* lightgoldenrodyellow */
     background-color: var(--tag-bg);
     color: var(--color-text);
