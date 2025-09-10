@@ -1,0 +1,12 @@
+{
+  "title": "Project Beta",
+  "slug": "project-beta",
+  "summary": "Placeholder summary for Project Beta.",
+  "date": "2023-11-15",
+  "tags": ["DevEx", "User Research"],
+  "media": {
+    "thumbnailImage": "/media/beta-thumb.jpg",
+    "hoverVideo": "/media/beta-hover.mp4",
+    "alt": "Diagram of Project Beta" 
+  }
+}

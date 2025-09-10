@@ -1,0 +1,31 @@
+---
+import { cva } from 'class-variance-authority';
+/**
+ * Accessible button component with stylistic variants.
+ * @prop href Optional link to render as anchor.
+ * @prop variant Visual variant.
+ */
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary';
+  type?: 'button' | 'submit';
+}
+const { href, variant = 'primary', type = 'button' } = Astro.props as Props;
+const styles = cva('px-4 py-2 border rounded focus-visible:outline-none', {
+  variants: {
+    variant: {
+      primary: 'bg-accent text-bg',
+      secondary: 'border-accent text-accent',
+    },
+  },
+});
+---
+{href ? (
+  <a href={href} class={styles({ variant })}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={styles({ variant })}>
+    <slot />
+  </button>
+)}

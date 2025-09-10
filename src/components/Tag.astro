@@ -1,0 +1,6 @@
+---
+/** Visual tag label. */
+export interface Props { label: string }
+const { label } = Astro.props as Props;
+---
+<span class="text-xs border border-accent px-2 py-1 rounded">{label}</span>

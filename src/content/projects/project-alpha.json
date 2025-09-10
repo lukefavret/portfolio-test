@@ -1,0 +1,16 @@
+{
+  "title": "Project Alpha",
+  "slug": "project-alpha",
+  "summary": "Placeholder summary for Project Alpha.",
+  "date": "2024-02-01",
+  "tags": ["UI", "Research"],
+  "hasPrototype": true,
+  "prototypeUrl": "https://example.com/alpha",
+  "media": {
+    "thumbnailImage": "/media/alpha-thumb.jpg",
+    "hoverVideo": "/media/alpha-hover.mp4",
+    "alt": "Screenshot of Project Alpha interface"
+  },
+  "discipline": "UX Design / Full Stack Dev.",
+  "displayedDate": "February 2024"
+}

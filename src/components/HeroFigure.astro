@@ -1,0 +1,18 @@
+---
+/**
+ * Figure with numbered caption following editorial style.
+ * @prop num Figure number label.
+ * @prop caption Caption text.
+ */
+export interface Props {
+  num: number;
+  caption: string;
+}
+const { num, caption } = Astro.props as Props;
+---
+<figure class="my-8">
+  <slot />
+  <figcaption class="text-center text-sm mt-2 font-mono">
+    fig. {num}. {caption}
+  </figcaption>
+</figure>

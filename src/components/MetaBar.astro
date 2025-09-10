@@ -1,0 +1,14 @@
+---
+/**
+ * Top metadata bar splitting discipline and publication date.
+ */
+export interface Props {
+  discipline: string;
+  date: string;
+}
+const { discipline, date } = Astro.props as Props;
+---
+<div class="flex justify-between text-sm border-b border-accent py-2 mb-8">
+  <span>{discipline}</span>
+  <span>Published <time datetime={date}>{date}</time></span>
+</div>

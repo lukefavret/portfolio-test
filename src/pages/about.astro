@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+<BaseLayout title="About">
+  <SiteHeader />
+  <main id="main" class="max-w-3xl mx-auto p-4">
+    <h1 class="font-serif text-4xl mb-4">About Me</h1>
+    <img src="/media/headshot.jpg" alt="TODO: meaningful alt text" class="w-40 float-right ml-4 mb-4" />
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquet, nisi sed
+      tincidunt aliquam, turpis sem pulvinar sapien, ut convallis nisi mi nec urna. Nulla
+      facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+      turpis egestas. Sed ac magna at dolor consequat varius. Integer sit amet faucibus nunc.
+      Donec ultricies, nisl ut commodo viverra, nisl lorem volutpat mi, vitae laoreet massa dui
+      vitae libero. Integer suscipit ligula at mauris placerat, et accumsan urna pharetra. Duis
+      eget sem vel elit fermentum viverra. Suspendisse potenti. Aenean eget velit sed ligula
+      sollicitudin gravida quis non nunc. Vestibulum ante ipsum primis in faucibus orci luctus et
+      ultrices posuere cubilia curae; Maecenas a nisl non quam fermentum accumsan nec a neque.
+    </p>
+  </main>
+  <SiteFooter />
+</BaseLayout>
