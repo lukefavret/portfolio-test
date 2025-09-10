@@ -1,0 +1,123 @@
+---
+// src/layouts/BaseLayout.astro
+import '../styles/global.css';
+import '../styles/FocusRing.css';
+
+// Import global components that will be used on every page.
+// TODO: These components will be created in the next step.
+import SiteHeader from '@components/global/SiteHeader.astro';
+import SiteFooter from '@components/global/SiteFooter.astro';
+
+/**
+ * Base Layout Component
+ *
+ * This component serves as the foundational HTML structure for every page on the site.
+ * It ensures consistency and handles global concerns like SEO, styling, and accessibility.
+ *
+ * It's heavily documented to explain the purpose of each tag and attribute,
+ * particularly concerning SEO and WCAG compliance.
+ */
+
+// --- PROPS ---
+export interface Props {
+  /**
+   * The title of the page, used in the <title> tag and for social media cards.
+   * A title is required for every page for accessibility and SEO.
+   */
+  title: string;
+  /**
+   * The meta description of the page. Used for SEO.
+   * Keep it concise (50-160 characters).
+   */
+  description: string;
+  /**
+   * The canonical URL of the page. Important for SEO to avoid duplicate content issues.
+   * Defaults to the current page URL.
+   */
+  canonicalURL?: URL | string;
+  /**
+   * Optional: A specific image to use for social media sharing cards.
+   * If not provided, a default site image should be used.
+   * TODO: Implement a default social sharing image.
+   */
+  socialImage?: string;
+}
+
+const {
+  title,
+  description,
+  // Default the canonical URL to the current page's URL if not provided.
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  socialImage, // TODO: Add a default image
+} = Astro.props;
+
+// Construct a full title for the <title> tag.
+const fullTitle = `${title} | Wright Portfolio`;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-pt-16">
+  <head>
+    <!-- Basic meta tags for character set and viewport responsiveness. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO: Title and Description -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+
+    <!-- SEO: Canonical URL to prevent duplicate content. -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon -->
+    <!-- TODO: User should replace these with their own favicon files. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph (Facebook, etc.) and Twitter Card meta tags for social sharing. -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:image" content={socialImage || '/default-social.jpg'} /> -->
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <!-- <meta name="twitter:image" content={socialImage || '/default-social.jpg'} /> -->
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <!--
+      ACCESSIBILITY: Skip to Content Link
+      This is the first focusable element on the page, allowing keyboard
+      and screen reader users to bypass the navigation and jump directly
+      to the main content. It is visually hidden until focused.
+    -->
+    <a
+      href="#main-content"
+      class="focus-ring absolute left-4 top-4 z-50 -translate-y-12 transform rounded-md bg-background p-3 font-bold text-accent transition-transform focus:translate-y-0"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Site Header: Contains primary navigation. It's a landmark. -->
+    <!-- This component will be created in the next step. -->
+    <SiteHeader class="no-print" />
+
+    <!--
+      MAIN CONTENT
+      The <main> element is a crucial landmark for accessibility. It should contain
+      the primary, unique content of the page. The `id` is the target for the
+      "Skip to Content" link.
+    -->
+    <main id="main-content" class="flex-grow">
+      <!-- The content of each individual page is injected here. -->
+      <slot />
+    </main>
+
+    <!-- Site Footer: Contains copyright, social links, etc. It's a landmark. -->
+    <!-- This component will be created in the next step. -->
+    <SiteFooter class="no-print" />
+  </body>
+</html>

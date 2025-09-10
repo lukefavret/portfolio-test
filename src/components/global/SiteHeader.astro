@@ -1,0 +1,62 @@
+---
+// src/components/global/SiteHeader.astro
+import NavLink from '@components/ui/NavLink.astro';
+
+/**
+ * Site Header Component
+ *
+ * This component renders the main header for the site, which includes the
+ * site title/logo and the primary navigation. It is designed to be a
+ * consistent landmark across all pages.
+ *
+ * Accessibility:
+ * - Uses a `<header>` element as a top-level landmark.
+ * - The navigation is wrapped in a `<nav>` element with an `aria-label`
+ *   to clearly identify its purpose to screen readers.
+ * - The list of links is structured using a `<ul>` for proper semantics.
+ */
+
+// Define the navigation links for the site.
+// This array makes it easy to add or remove pages from the main navigation.
+const navLinks = [
+  { href: '/', text: 'Home' },
+  { href: '/portfolio/', text: 'Portfolio' },
+  { href: '/about/', text: 'About' },
+  { href: '/resume/', text: 'Resume' },
+  { href: '/contact/', text: 'Contact' },
+];
+
+// The `class` prop allows passing additional CSS classes from the parent.
+const { class: className } = Astro.props;
+---
+
+<header
+  class:list={[
+    'w-full border-b border-text/20 bg-background/80 text-lg backdrop-blur-sm',
+    className,
+  ]}
+>
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <!-- Site Title / Logo -->
+    <a href="/" class="focus-ring font-heading text-2xl font-bold text-accent">
+      WRIGHT
+      <span class="sr-only">Portfolio Home</span>
+    </a>
+
+    <!--
+      Primary Navigation
+      - `aria-label="Primary"` distinguishes this from other potential nav elements (e.g., in the footer).
+    -->
+    <nav aria-label="Primary">
+      <ul class="flex items-center gap-x-2 font-body sm:gap-x-4">
+        {
+          navLinks.map((link) => (
+            <li>
+              <NavLink href={link.href}>{link.text}</NavLink>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

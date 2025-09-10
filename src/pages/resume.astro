@@ -1,0 +1,153 @@
+---
+// src/pages/resume.astro
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+
+/**
+ * Resume Page
+ *
+ * This page presents a resume in clean, semantic HTML. It's designed
+ * to be both readable on screen and well-formatted for printing or
+ * saving as a PDF.
+ *
+ * It includes a prominent download link for the actual PDF resume and
+ * specific print styles to hide unnecessary UI elements like the header
+ * and footer when printed.
+ */
+
+const pageTitle = 'Resume';
+const pageDescription =
+  'A detailed overview of my professional experience, skills, and education.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <header class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <div>
+        <h1 class="font-heading text-4xl font-bold uppercase tracking-wider sm:text-5xl">
+          Resume
+        </h1>
+        <p class="mt-1 text-text/80">
+          A summary of my work and qualifications.
+        </p>
+      </div>
+      <!-- Download Button is hidden on print -->
+      <Button
+        href="/resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="primary"
+        iconLeft="download"
+        class="no-print"
+      >
+        Download PDF
+      </Button>
+    </header>
+
+    <hr class="editorial-rule" />
+
+    <!-- The 'resume-content' class is a hook for print styles. -->
+    <article class="resume-content prose prose-lg max-w-none">
+      <!-- TODO: Replace all placeholder content below with your actual resume details. -->
+
+      <section>
+        <h2>Summary</h2>
+        <p>
+          A highly motivated and detail-oriented designer and developer with
+          over X years of experience in building accessible, performant, and
+          user-centered digital products. Proficient in both front-end and
+          back-end technologies, with a strong focus on creating clean,
+          maintainable, and well-documented code.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+
+        <h3>
+          Senior Product Designer, Tech Corp Inc. | City, State | 2022–Present
+        </h3>
+        <ul>
+          <li>
+            Led the design and development of a new design system, improving
+            development velocity by 30%.
+          </li>
+          <li>
+            Conducted user research and usability testing to inform product
+            decisions.
+          </li>
+          <li>
+            Collaborated with cross-functional teams to ship features on time.
+          </li>
+        </ul>
+
+        <h3>Web Developer, Solutions LLC | City, State | 2019–2022</h3>
+        <ul>
+          <li>
+            Developed and maintained client websites using modern web
+            technologies.
+          </li>
+          <li>
+            Improved website performance and accessibility scores across all
+            projects.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <ul>
+          <li>
+            <strong>Languages:</strong> TypeScript, JavaScript, HTML, CSS
+          </li>
+          <li><strong>Frameworks:</strong> Astro, React, Node.js</li>
+          <li><strong>Tools:</strong> Figma, Git, Tailwind CSS, WCAG</li>
+          <li><strong>Other:</strong> UX Research, Prototyping, Public Speaking</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <h3>
+          B.S. in Computer Science, University of Technology | City, State | 2019
+        </h3>
+        <p>Minor in Graphic Design.</p>
+      </section>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  /*
+    Resume-specific print styles.
+    These are applied in addition to the global print styles.
+  */
+  @media print {
+    /* Ensure the layout is single-column and uses the full page width. */
+    .resume-content {
+      max-width: 100%;
+    }
+
+    /* Add more specific typography for print if needed. */
+    .resume-content h2 {
+      font-size: 14pt;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      margin-top: 1.5rem;
+    }
+
+    .resume-content h3 {
+      font-size: 12pt;
+      margin-bottom: 0.25rem;
+    }
+
+    .resume-content ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .resume-content li {
+      margin-bottom: 0.25rem;
+    }
+  }
+</style>

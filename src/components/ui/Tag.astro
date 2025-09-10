@@ -1,0 +1,29 @@
+---
+// src/components/ui/Tag.astro
+
+/**
+ * Tag Component
+ *
+ * A small, presentational component for displaying a single project tag.
+ * It's designed to be used in lists of tags on project cards and pages.
+ *
+ * Props:
+ * - `class`: Allows passing additional CSS classes for layout adjustments.
+ */
+
+// --- PROPS ---
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    'rounded-full border border-text/30 bg-transparent px-3 py-1 font-mono text-xs uppercase text-text/80',
+    className,
+  ]}
+>
+  <slot />
+</div>
