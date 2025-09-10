@@ -1,0 +1,16 @@
+---
+import NavLink from './NavLink.astro';
+/** Global site header with primary navigation. */
+---
+<header class="border-b border-accent mb-8">
+  <nav aria-label="Primary" class="max-w-4xl mx-auto flex justify-between items-center p-4">
+    <a href="/" class="font-serif text-2xl">My Portfolio</a>
+    <ul class="flex gap-4">
+      <NavLink href="/" text="Home" />
+      <NavLink href="/portfolio" text="Portfolio" />
+      <NavLink href="/about" text="About" />
+      <NavLink href="/resume" text="Resume" />
+      <NavLink href="/contact" text="Contact" />
+    </ul>
+  </nav>
+</header>

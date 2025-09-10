@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import TagFilter from '../../components/TagFilter';
+import { getCollection } from 'astro:content';
+const projects = (await getCollection('projects')).sort((a,b)=> new Date(b.data.date)-new Date(a.data.date));
+const tags = Array.from(new Set(projects.flatMap(p=>p.data.tags))).sort();
+---
+<BaseLayout title="Portfolio">
+  <SiteHeader />
+  <main id="main" class="max-w-4xl mx-auto p-4">
+    <h1 class="font-serif text-4xl mb-4">Portfolio</h1>
+    <TagFilter client:load tags={tags} />
+    <section id="project-list">
+      {projects.map((p) => (
+        <div data-tags={p.data.tags.join(',')}>
+          <ProjectCard project={p} />
+        </div>
+      ))}
+    </section>
+    <script>
+      document.addEventListener('tag-filter', (e) => {
+        const selected = e.detail as string[];
+        document.querySelectorAll('#project-list > div').forEach((el) => {
+          const tags = (el.getAttribute('data-tags') || '').split(',');
+          const show = !selected.length || selected.some((t) => tags.includes(t));
+          (el as HTMLElement).style.display = show ? '' : 'none';
+        });
+      });
+    </script>
+  </main>
+  <SiteFooter />
+</BaseLayout>
