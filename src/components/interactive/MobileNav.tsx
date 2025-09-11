@@ -1,4 +1,5 @@
-import { useState, useEffect, type VNode } from 'preact/hooks';
+import { useState, useEffect, useRef } from 'preact/hooks';
+import type { VNode } from 'preact';
 
 /**
  * Props for the MobileNav component.
@@ -23,16 +24,16 @@ function NavIcon({ isOpen }: { isOpen: boolean }) {
     >
       {isOpen ? (
         <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           d="M6 18L18 6M6 6l12 12"
         />
       ) : (
         <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           d="M4 6h16M4 12h16m-7 6h7"
         />
       )}
@@ -46,15 +47,103 @@ function NavIcon({ isOpen }: { isOpen: boolean }) {
  */
 export default function MobileNav({ children }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
 
+  // Manage a robust scroll lock that works better on mobile (iOS) and
+  // keep the existing Tailwind utility fallback. Also clean up on unmount.
   useEffect(() => {
+    const body = document.body;
+    let scrollY = 0;
+
     if (isOpen) {
-      document.body.classList.add('overflow-hidden', 'lg:overflow-auto');
+      // store scroll pos and lock
+      scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      body.style.position = 'fixed';
+      body.style.top = `-${scrollY}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      // also add the class for larger breakpoints
+      body.classList.add('lg:overflow-auto');
     } else {
-      document.body.classList.remove('overflow-hidden', 'lg:overflow-auto');
+      // restore
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      body.classList.remove('lg:overflow-auto');
+      window.scrollTo(0, scrollY);
     }
+
     return () => {
-      document.body.classList.remove('overflow-hidden', 'lg:overflow-auto');
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      body.classList.remove('lg:overflow-auto');
+      window.scrollTo(0, scrollY);
+    };
+  }, [isOpen]);
+
+  // Keyboard + focus handling: close on Escape, trap Tab inside panel, and
+  // restore focus to the toggle when closing.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    // focus the panel (or the first focusable inside it)
+    requestAnimationFrame(() => {
+      const panel = panelRef.current;
+      if (!panel) return;
+      const selectors =
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      const focusables = Array.from(panel.querySelectorAll<HTMLElement>(selectors)).filter(
+        (el) => el.offsetParent !== null
+      );
+      if (focusables.length) focusables[0].focus();
+      else panel.focus();
+    });
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setIsOpen(false);
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const panel = panelRef.current;
+        if (!panel) return;
+        const selectors =
+          'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+        const focusables = Array.from(panel.querySelectorAll<HTMLElement>(selectors)).filter(
+          (el) => el.offsetParent !== null
+        );
+        if (!focusables.length) {
+          e.preventDefault();
+          panel.focus();
+          return;
+        }
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        if (e.shiftKey && (active === first || active === panelRef.current)) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      // restore focus
+      if (toggleRef.current) toggleRef.current.focus();
+      else previouslyFocused?.focus?.();
     };
   }, [isOpen]);
 
