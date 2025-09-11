@@ -1,32 +1,45 @@
 ---
-title: 'Project Alpha: A Study in Human-Centered AI'
-summary: 'An exploratory project focused on designing and building an intuitive AI-powered assistant for creative professionals.'
+title: 'ARC³ Case Framework'
+summary: 'Evidence-First Case Studies A rigorous, dual-lane (Impact/Evidence) method for writing portfolio-ready case studies with explicit success criteria, ablations, and GO/PIVOT/PAUSE decision gates.'
 date: '2025-09-01'
-tags: ['UX Design', 'AI', 'Full Stack Dev']
-discipline: 'Design & Development'
+tags: ['Research Methods', 'UX', 'HCI']
+discipline: 'Methodology & Writing System'
 displayedDate: 'Summer 2025'
-hasPrototype: true
-prototypeUrl: 'https://example.com'
-repoUrl: 'https://github.com/TODO'
+hasPrototype: false
+prototypeUrl: 'https://example.com/arc3'           # placeholder
+repoUrl: 'https://github.com/lukefavret/arc3-framework'           
 media:
-  thumbnailImage: '/media/placeholder-16-9.png'
-  hoverVideo: '/media/placeholder-video.mp4'
-  alt: 'A placeholder image showing a wireframe of a user interface.'
+  thumbnailImage: '/media/arc3_framework_thumbnail.png'
+  hoverVideo: '/media/arc3_placeholder_vid.mp4'
+  alt: 'ARC³ STAR card with A/R/C lanes and dual Impact/Evidence ribbon.'
 ---
 
-## fig. 1. STAR Overview
+## fig. 1. STAR Overview (ARC³)
 
-**Situation:** Creative professionals are often overwhelmed with managing repetitive, non-creative tasks, which hinders their productivity and creative flow.
+**Situation:** Portfolio case studies are often fluffy, inconsistent, and hard to evaluate. Reviewers need clear evidence, while hiring managers want business impact. ARC³ addresses this gap with opinionated guardrails that tie goals to results.
 
-**Task:** My goal was to design and build a proof-of-concept for an AI assistant that could automate these tasks through a simple, conversational interface, thereby freeing up users to focus on high-value creative work.
+**Task:** Define and package a repeatable framework that:
+- Encodes three lanes — **A**nchor & Aim, **R**esearch & Realization, **C**haracterization & Continuation.
+- Forces an **A.4 → C.1** contract (every success criterion defined up front must reappear in the outcome table).
+- Supports modes (**Standard / Qual / Lite**) and a dual-lane **Impact/Evidence** summary.
+- Sets reliability targets (e.g., κ ≥ 0.70 where applicable) and explicit **GO / PIVOT / PAUSE** gates.
 
-**Action:**
-- Conducted user interviews with 15 designers and writers to identify key pain points.
-- Developed a low-fidelity prototype in Figma to test core user flows.
-- Built a full-stack application using Astro for the frontend and a simple Node.js server for the backend AI integration.
-- Implemented a conversational UI that felt natural and intuitive.
+**Action (placeholder):**
+- Drafted Markdown/MDX templates and components to render an ARC³ **STAR Summary Card** (one screen) with mode badge.
+- Authored **A/R/C** section scaffolds, including:
+  - **A.4 Hypotheses & Success Criteria** list with OWNER and DATA SOURCE fields.
+  - **C.1 Outcome tables** for Quant (Standard/Lite) and Qual modes.
+  - **C.3 Continuation plan** with triggers and kill-criteria.
+- Added accessibility notes (target: WCAG 2.2 AA), SI/ISO-8601 conventions, and evidence table placeholders.
+- Created icon set and minimal visual system (blueprint grid, industry/academic ribbon).
+- (TBD) Starter repo to auto-generate **C.1** from **A.4** and stamp mode badges.
 
-**Result:** The resulting prototype was able to successfully automate 80% of the identified repetitive tasks. User feedback was overwhelmingly positive, with participants noting a significant reduction in cognitive load and an increase in creative output.
+**Result (placeholder):** v1 template drafted; sample “hello ARC³” case stub created. Planned validation:
+- **Time-to-case** ≤ 4 hours for a new project (n≈5 pilot users) — *TBD*  
+- **SUS** ≥ 80 from test readers — *TBD*  
+- **IRR (κ)** ≥ 0.70 on C.1 scoring across two raters — *TBD*  
+- **Decision clarity** (reviewers correctly infer GO/PIVOT/PAUSE) ≥ 90% — *TBD*
+
 
 ## Full Case Study
 

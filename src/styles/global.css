@@ -215,6 +215,20 @@
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
+
+  .tag-accessibility {
+    --tag-bg: #d8bfd8;
+    /* thistle */
+    background-color: var(--tag-bg);
+    color: var(--color-text);
+  }
+
+  .tag-devex {
+    --tag-bg: #e0ffff;
+    /* lightcyan */
+    background-color: var(--tag-bg);
+    color: var(--color-text);
+  }
 }
 
 /*

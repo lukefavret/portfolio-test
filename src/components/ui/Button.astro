@@ -48,10 +48,10 @@ const baseClasses =
   'focus-ring inline-flex items-center justify-center gap-x-2 rounded-sm px-6 py-3 text-center font-bold uppercase tracking-wider transition-colors duration-200';
 
 const variantClasses = {
-  primary: 'bg-accent text-background hover:bg-accent/90',
+  primary: 'bg-accent text-background hover:bg-accent',
   secondary:
-    'border border-text/50 bg-transparent text-text hover:bg-text/5',
-  tertiary: 'border border-accent/50 bg-transparent text-accent hover:bg-accent/10',
+    'border border-text bg-transparent text-text hover:bg-text',
+  tertiary: 'border border-accent lowercase bg-transparent text-textSecondary hover:bg-accent hover:text-background',
 };
 
 const Tag = href ? 'a' : 'button';

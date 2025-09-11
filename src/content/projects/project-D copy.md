@@ -8,7 +8,7 @@ displayedDate: 'September 2025'
 hasPrototype: true
 prototypeUrl: 'https://github.com/lukefavret/lsl-harness'
 media:
-  thumbnailImage: '/media/placeholder-16-9.png'
+  thumbnailImage: '/media/lsl_harness_thumbnail.png'
   # No hoverVideo for this project to test the fallback.
   alt: 'A placeholder image showing a colorful but accessible bar chart.'
 ---
