@@ -33,7 +33,8 @@ const { class: className } = Astro.props;
 
 <header
   class:list={[
-    'sticky top-0 z-30 w-full border-b border-textTertiary bg-surface/80 text-lg backdrop-blur-sm',
+    // span the full viewport horizontally
+    'top-0 inset-x-0 z-30 border-b border-textTertiary bg-surface/80 text-lg backdrop-blur-sm',
     className,
   ]}
 >

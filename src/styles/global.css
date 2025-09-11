@@ -60,8 +60,8 @@
     /* was #222222 */
     --color-textSecondary: 74 74 74;
     /* was #4A4A4A */
-    --color-textTertiary: 215 215 215;
-    /* was #9E9E9E */ 
+    --color-textTertiary: 200 200 200;
+    /* was #9E9E9E */
     --color-accent: 59 76 88;
     /* was #3b4c58 */
     --color-surface: 251 246 232;
@@ -98,11 +98,22 @@
     /* 16px */
     line-height: 1.5;
 
-    /* Let the browser decide gutter (no forced reserve). Use auto so we
-      don't always reserve scrollbar space. */
-    /* scrollbar-gutter: auto is the default, so this line can be removed. */
+    /* Reserve vertical scrollbar space to avoid horizontal layout shifts
+       when the vertical scrollbar appears/disappears. */
+    scrollbar-gutter: stable;
+
+    /* Allow the browser to show the scrollbar as needed. */
     overflow-y: auto;
   }
+
+  /* If the browser doesn't support scrollbar-gutter, always show the
+     vertical scrollbar to avoid shifting. */
+  @supports not (scrollbar-gutter: stable) {
+    html {
+      overflow-y: scroll;
+    }
+  }
+
 
   /* Apply a subtle text rendering optimization. */
   body {
@@ -162,6 +173,12 @@
   .editorial-rule {
     border: none;
     border-top: 1px solid theme('colors.textSecondary');
+    margin: 2rem 0;
+  }
+
+  .editorial-rule-light {
+    border: none;
+    border-top: 1px solid theme('colors.textTertiary');
     margin: 2rem 0;
   }
 
