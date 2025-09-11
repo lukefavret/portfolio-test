@@ -9,7 +9,7 @@ hasPrototype: false
 prototypeUrl: 'https://example.com/arc3'           # placeholder
 repoUrl: 'https://github.com/lukefavret/arc3-framework'           
 media:
-  thumbnailImage: '/media/arc3_framework_thumbnail.png'
+  thumbnailImage: '/media/arc3_framework_thumbnail.webp'
   hoverVideo: '/media/arc3_placeholder_vid.mp4'
   alt: 'ARC³ STAR card with A/R/C lanes and dual Impact/Evidence ribbon.'
 ---
