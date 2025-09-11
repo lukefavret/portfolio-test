@@ -71,8 +71,18 @@ export default function MobileNav({ children }: MobileNavProps) {
       </button>
 
       {isOpen && (
-        <div id="mobile-nav-panel" class="fixed inset-0 z-40 bg-surface pt-16">
-          {children}
+        <div id="mobile-nav-panel" class="fixed inset-0 z-40">
+          {/* semi-opaque backdrop, closes menu when clicked */}
+          <div
+            class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* menu surface on top of the backdrop */}
+          <div class="relative bg-surface/95 min-h-screen pt-16">
+            {children}
+          </div>
         </div>
       )}
     </>

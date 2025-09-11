@@ -54,16 +54,16 @@
      * --color-accent: The accent color for links, highlights, and active states.
      * --color-surface: A secondary background color for UI elements like headers or cards.
      */
-    --color-bg: #f8f7f1;
-    /* Original: #f8f7f1 */
-    --color-text: #222222;
-    /* Original: #222222 */
-    --color-textSecondary: #4A4A4A;
-    /* Original: #4A4A4A */
-    --color-accent: #3b4c58;
-    /* Original: #3b4c58 */
-    --color-surface: #fbf6e8;
-    /* Original: #fbf6e8 */
+    --color-bg: 248 247 241;
+    /* was #f8f7f1 */
+    --color-text: 34 34 34;
+    /* was #222222 */
+    --color-textSecondary: 74 74 74;
+    /* was #4A4A4A */
+    --color-accent: 59 76 88;
+    /* was #3b4c58 */
+    --color-surface: 251 246 232;
+    /* was #fbf6e8 */
 
     /* Base font settings */
     font-family: theme('fontFamily.body');
@@ -254,6 +254,7 @@
       opacity: 0;
       transform: scale(0.95);
     }
+
     to {
       opacity: 1;
       transform: scale(1);

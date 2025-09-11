@@ -32,11 +32,26 @@ module.exports = {
       // Defines the color palette using CSS variables for easy theming.
       // The actual color values are set in `src/styles/global.css`.
       colors: {
-        background: 'var(--color-bg)',
-        text: 'var(--color-text)',
-        textSecondary: 'var(--color-textSecondary)',
-        accent: 'var(--color-accent)',
-        surface: 'var(--color-surface)',
+        background: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-bg) / ${opacityValue})`
+            : `rgb(var(--color-bg) / 1)`,
+        text: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-text) / ${opacityValue})`
+            : `rgb(var(--color-text) / 1)`,
+        textSecondary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-textSecondary) / ${opacityValue})`
+            : `rgb(var(--color-textSecondary) / 1)`,
+        accent: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-accent) / ${opacityValue})`
+            : `rgb(var(--color-accent) / 1)`,
+        surface: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-surface) / ${opacityValue})`
+            : `rgb(var(--color-surface) / 1)`,
       },
 
       // Defines the custom font families for the project.
