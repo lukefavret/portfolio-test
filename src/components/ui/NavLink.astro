@@ -37,17 +37,20 @@ const isActive =
 <a
   href={href}
   class:list={[
-    'flex items-center h-full w-full focus-ring relative rounded-none px-3 sm:px-1 lg:px-3 transition-colors duration-200 border border-transparent hover:bg-text/5 hover:border hover:border-textSecondary',
-    // Apply active styles if `isActive` is true.
+    // Reserve a full 2px transparent border to avoid layout shift on hover/active.
+    // Center the label horizontally and vertically.
+    'focus-ring relative flex h-full w-24 items-center justify-center text-center whitespace-nowrap rounded-none border border-transparent transition-colors duration-200 hover:border-textSecondary',
     {
-      'font-bold text-accent': isActive,
+      // Active: full border (border-accent) + extra bottom stripe via ::after that
+      // overlaps the outer border (no gap). Use a 2px tall stripe positioned
+      // 2px below the element's inner box so it sits flush with the outer border.
+      'relative border-accent font-bold text-accent after:pointer-events-none after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-[3px] after:bg-accent after:content-[""]':
+        isActive,
+      // Inactive: normal text with transparent border (keeps space).
       'text-text': !isActive,
     },
   ]}
   aria-current={isActive ? 'page' : false}
-> 
+>
   <slot />
-  {
-    
-  }
 </a>

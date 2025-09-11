@@ -48,10 +48,10 @@ const { class: className } = Astro.props;
       - `aria-label="Primary"` distinguishes this from other potential nav elements (e.g., in the footer).
     -->
     <nav aria-label="Primary" class="h-full">
-      <ul class="flex items-stretch h-full gap-x-2 font-body sm:gap-x-4">
+      <ul class="flex items-stretch  h-full  font-body ">
         {
           navLinks.map((link) => (
-            <li class="h-full flex">
+            <li class="h-full flex ">
               <NavLink href={link.href}>{link.text}</NavLink>
             </li>
           ))

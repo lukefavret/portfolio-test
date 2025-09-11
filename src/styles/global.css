@@ -173,7 +173,7 @@
     font-size: 0.875rem;
     /* 14px */
     color: theme('colors.textSecondary');
-    text-transform: uppercase;
+    /* text-transform: lowercase; */
   }
 }
 
