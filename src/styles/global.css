@@ -236,6 +236,39 @@
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
+
+  /*
+ * =================================================================
+ * MOBILE NAVIGATION
+ *
+ * Styles and animations for the mobile navigation menu.
+ * =================================================================
+ */
+
+  /*
+  * Animation for the mobile navigation panel.
+  * It creates a subtle fade-in and scale-up effect.
+  */
+  @keyframes panel-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Apply the entrance animation to the mobile nav panel. */
+  #mobile-nav-panel {
+    /*
+    * The `transform-origin` is set to the top right, so the panel
+    * appears to expand from the hamburger button's location.
+    */
+    transform-origin: top right;
+    animation: panel-enter 150ms ease-out;
+  }
 }
 
 /*
