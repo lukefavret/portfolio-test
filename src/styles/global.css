@@ -60,6 +60,8 @@
     /* was #222222 */
     --color-textSecondary: 74 74 74;
     /* was #4A4A4A */
+    --color-textTertiary: 215 215 215;
+    /* was #9E9E9E */ 
     --color-accent: 59 76 88;
     /* was #3b4c58 */
     --color-surface: 251 246 232;
@@ -96,14 +98,10 @@
     /* 16px */
     line-height: 1.5;
 
-    /*
-     * Prevent layout shift when navigating between pages that do and do not
-     * produce a vertical scrollbar. This keeps the header/logo from "jumping".
-     * `scrollbar-gutter` is the modern approach; `overflow-y: scroll` is a
-     * widely supported fallback to always reserve space for the scrollbar.
-     */
-    scrollbar-gutter: stable both-edges;
-    overflow-y: scroll;
+    /* Let the browser decide gutter (no forced reserve). Use auto so we
+      don't always reserve scrollbar space. */
+    /* scrollbar-gutter: auto is the default, so this line can be removed. */
+    overflow-y: auto;
   }
 
   /* Apply a subtle text rendering optimization. */

@@ -44,6 +44,10 @@ module.exports = {
           opacityValue
             ? `rgb(var(--color-textSecondary) / ${opacityValue})`
             : `rgb(var(--color-textSecondary) / 1)`,
+        textTertiary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-textTertiary) / ${opacityValue})`
+            : `rgb(var(--color-textTertiary) / 1)`,
         accent: ({ opacityValue }) =>
           opacityValue
             ? `rgb(var(--color-accent) / ${opacityValue})`
