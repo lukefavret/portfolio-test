@@ -97,6 +97,15 @@
     font-size: 100%;
     /* 16px */
     line-height: 1.5;
+
+    /*
+     * Prevent layout shift when navigating between pages that do and do not
+     * produce a vertical scrollbar. This keeps the header/logo from "jumping".
+     * `scrollbar-gutter` is the modern approach; `overflow-y: scroll` is a
+     * widely supported fallback to always reserve space for the scrollbar.
+     */
+    scrollbar-gutter: stable both-edges;
+    overflow-y: scroll;
   }
 
   /* Apply a subtle text rendering optimization. */

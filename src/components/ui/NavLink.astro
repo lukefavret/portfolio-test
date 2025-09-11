@@ -37,7 +37,7 @@ const isActive =
 <a
   href={href}
   class:list={[
-    'focus-ring relative rounded-md px-3 py-2 sm:px-1 lg:px-3 transition-colors duration-200 hover:bg-text/5',
+    'flex items-center h-full w-full focus-ring relative rounded-none px-3 sm:px-1 lg:px-3 transition-colors duration-200 border border-transparent hover:bg-text/5 hover:border hover:border-textSecondary',
     // Apply active styles if `isActive` is true.
     {
       'font-bold text-accent': isActive,
@@ -45,18 +45,9 @@ const isActive =
     },
   ]}
   aria-current={isActive ? 'page' : false}
->
+> 
   <slot />
   {
-    /*
-      Add a visual indicator for the active link (a small dot).
-      This is a subtle design detail that reinforces the active state.
-    */
-    isActive && (
-      <span
-        class="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent"
-        aria-hidden="true"
-      />
-    )
+    
   }
 </a>
