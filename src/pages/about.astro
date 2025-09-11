@@ -16,21 +16,21 @@ const pageDescription =
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
     <header>
-      <h1 class="font-heading text-4xl font-bold tracking-wider sm:text-5xl">
+      <h1
+        class="text-center font-heading text-4xl font-bold tracking-wider sm:text-5xl"
+      >
         About Me
       </h1>
     </header>
 
     <hr class="editorial-rule" />
 
-    <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+    <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
       <!-- Main content column -->
-      <div class="prose prose-lg md:col-span-2">
-        <p>
-          TODO: Replace this with your own ~150-250 word bio.
-        </p>
+      <div class="prose prose-lg mx-auto max-w-[70ch] md:col-span-2">
+        <p>TODO: Replace this with your own ~150-250 word bio.</p>
         <p>
           I am a designer and developer driven by a deep-seated curiosity for
           how things work. My approach is rooted in a "first principles" way of
@@ -48,15 +48,17 @@ const pageDescription =
           with a focus on clean architecture, minimal JavaScript, and strict
           adherence to accessibility standards.
         </p>
+        <p>
+          My downtime is for diving into other worlds. I love the dense,
+          imaginative fiction of authors like Ursula K. Le Guin, the challenge
+          of capturing an overlooked perspective with my camera, and the offbeat
+          artistry of a great indie game.
+        </p>
       </div>
 
       <!-- Headshot column -->
       <div class="md:col-span-1">
         <figure>
-          <!--
-            TODO: Replace this placeholder image with a professional head shot.
-            The image is set to be a square, but any aspect ratio will work.
-          -->
           <img
             src="/media/tinyHeadshot.jpg"
             alt="Headshot of Luke Favret"

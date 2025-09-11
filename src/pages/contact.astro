@@ -18,7 +18,7 @@ const pageDescription =
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
     <header>
       <h1 class="font-heading text-4xl font-bold tracking-wider sm:text-5xl">
         Get In Touch
@@ -37,13 +37,12 @@ const pageDescription =
     <!--
       Email Obfuscator Component
       - `client:load` ensures the JS runs to construct the mailto link.
-      - TODO: The user must replace these placeholder values.
     -->
     <div class="mt-8">
       <EmailObfuscator
         client:load
-        user="EMAIL_USER_HERE"
-        domain="EMAIL_DOMAIN_HERE"
+        user="lukefavret"
+        domain="gmail.com"
       />
     </div>
 
@@ -52,9 +51,8 @@ const pageDescription =
     <div class="mt-8">
       <p class="mb-4 text-lg">Feel free to connect on other platforms:</p>
       <div class="flex items-center justify-center gap-4">
-        <!-- TODO: User must replace these placeholder hrefs. -->
         <Button
-          href="https://github.com/TODO"
+          href="https://github.com/lukefavret"
           target="_blank"
           rel="noopener noreferrer"
           variant="secondary"
@@ -63,7 +61,7 @@ const pageDescription =
           GitHub
         </Button>
         <Button
-          href="https://linkedin.com/in/TODO"
+          href="https://www.linkedin.com/in/luke-favret/"
           target="_blank"
           rel="noopener noreferrer"
           variant="secondary"

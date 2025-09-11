@@ -19,8 +19,6 @@
  * 2. Atkinson Hyperlegible: A highly readable sans-serif for body text.
  * 3. IBM Plex Mono: A clean monospaced font for accents.
  *
- * TODO: For production, these fonts should be self-hosted for performance
- * and privacy. The README.md will contain instructions on how to do this.
  * -----------------------------------------------------------------
  */
 @import "@fontsource/atkinson-hyperlegible/400.css";
