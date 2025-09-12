@@ -2,6 +2,7 @@
 title: 'Project Gamma: Accessible Data Visualization'
 summary: 'Creating a library of accessible data visualization components that meet WCAG 2.2 AA standards.'
 date: '2024-12-20'
+prestige: 0
 tags: ['Accessibility', 'UI']
 discipline: 'UI Engineering'
 displayedDate: 'Winter 2024'

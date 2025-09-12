@@ -2,6 +2,7 @@
 title: 'LSL Harness'
 summary: 'A benchmarking tool for Lab Streaming Layer (LSL) which reports jitter, latency, and dropped packets'
 date: '2025-09-12'
+prestige: 3
 tags: ['research', 'DevEx']
 discipline: 'Research Software Engineering'
 displayedDate: 'September 2025'

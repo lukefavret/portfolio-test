@@ -2,6 +2,7 @@
 title: 'Trade Temper'
 summary: 'A neurofeedback sensor which detects and helps manage emotional trading'
 date: '2024-12-20'
+prestige: 0
 tags: ['Research', 'Fintech']
 discipline: 'Fintech'
 displayedDate: 'Winter 2024'

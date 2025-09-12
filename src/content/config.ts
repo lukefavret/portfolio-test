@@ -26,6 +26,8 @@ const projectsCollection = defineCollection({
     /** The date the project was published, in ISO 8601 format (YYYY-MM-DD). Used for sorting. */
     date: z.string().transform((str) => new Date(str)), // Transform string to Date object
     /** A list of tags categorizing the project. */
+    prestige: z.number().min(0).max(5).default(0),
+    /** Prestige ranking for featured status */
     tags: z.array(z.string()),
     /** The main discipline or role for the project, e.g., "UX Design / Full Stack Dev." */
     discipline: z.string().default('UX Design / Full Stack Dev.'),

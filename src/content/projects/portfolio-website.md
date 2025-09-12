@@ -2,6 +2,7 @@
 title: 'Portfolio Website'
 summary: 'A comprehensive overhaul of an enterprise-level legacy system to improve developer experience and system performance.'
 date: '2025-05-15'
+prestige: 1
 tags: ['UI', 'UX']
 discipline: 'WebDev'
 displayedDate: 'Spring 2025'
