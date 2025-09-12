@@ -32,6 +32,8 @@ export interface Props extends HTMLAttributes<'a'> {
   iconLeft?: string;
   /** Optional: name of the icon to display on the right. */
   iconRight?: string;
+  /** The HTML tag to use for the component. */
+  as?: 'button' | 'a' | 'div';
 }
 
 const {
@@ -40,6 +42,7 @@ const {
   class: className,
   iconLeft,
   iconRight,
+  as,
   ...rest
 } = Astro.props;
 
@@ -54,7 +57,7 @@ const variantClasses = {
   tertiary: 'border border-accent px-3 lowercase bg-transparent text-textSecondary tracking-tight hover:bg-accent hover:text-background',
 };
 
-const Tag = href ? 'a' : 'button';
+const Tag = as || (href ? 'a' : 'button');
 ---
 
 <Tag

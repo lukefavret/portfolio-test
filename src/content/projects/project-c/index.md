@@ -1,15 +1,15 @@
 ---
-title: 'Trade Temper'
-summary: 'A neurofeedback sensor which detects and helps manage emotional trading'
+title: 'Project Gamma: Accessible Data Visualization'
+summary: 'Creating a library of accessible data visualization components that meet WCAG 2.2 AA standards.'
 date: '2024-12-20'
 prestige: 0
-tags: ['Research', 'Fintech']
-discipline: 'Fintech'
+tags: ['Accessibility', 'UI']
+discipline: 'UI Engineering'
 displayedDate: 'Winter 2024'
 hasPrototype: true
 prototypeUrl: 'https://example.com'
 media:
-  thumbnailImage: '/media/placeholder-16-9.png'
+  thumbnailImage: './media/placeholder-16-9.png'
   # No hoverVideo for this project to test the fallback.
   alt: 'A placeholder image showing a colorful but accessible bar chart.'
 ---
@@ -27,7 +27,3 @@ media:
 - Wrote comprehensive documentation for each component, including usage guidelines for maintaining accessibility.
 
 **Result:** The new library passed all WCAG 2.2 AA tests. When deployed, it allowed all users, regardless of ability, to access and understand critical company data. The project has become the new standard for all internal tooling.
-
-## Full Case Study
-
-TODO: This is where the full, detailed case study for Project Gamma would go. It would include sections on research, ideation, design process, technical implementation, and outcomes. For now, it is a placeholder.

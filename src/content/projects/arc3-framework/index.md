@@ -10,8 +10,8 @@ hasPrototype: false
 prototypeUrl: 'https://example.com/arc3'           # placeholder
 repoUrl: 'https://github.com/lukefavret/arc3-framework'           
 media:
-  thumbnailImage: '/media/arc3_framework_thumbnail.webp'
-  hoverVideo: '/media/arc3_placeholder_vid.mp4'
+  thumbnailImage: './media/arc3_framework_thumbnail.webp'
+  hoverVideo: './media/arc3_placeholder_vid.mp4'
   alt: 'ARC³ STAR card with A/R/C lanes and dual Impact/Evidence ribbon.'
 ---
 
@@ -40,8 +40,3 @@ media:
 - **SUS** ≥ 80 from test readers — *TBD*  
 - **IRR (κ)** ≥ 0.70 on C.1 scoring across two raters — *TBD*  
 - **Decision clarity** (reviewers correctly infer GO/PIVOT/PAUSE) ≥ 90% — *TBD*
-
-
-## Full Case Study
-
-TODO: This is where the full, detailed case study for Project Alpha would go. It would include sections on research, ideation, design process, technical implementation, and outcomes. For now, it is a placeholder.

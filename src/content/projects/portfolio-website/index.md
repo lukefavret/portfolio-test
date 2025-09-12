@@ -8,8 +8,8 @@ discipline: 'WebDev'
 displayedDate: 'Spring 2025'
 hasPrototype: false
 media:
-  thumbnailImage: '/media/portfolio_web_thumbnail.webp'
-  hoverVideo: '/media/placeholder-video.mp4'
+  thumbnailImage: './media/portfolio_web_thumbnail.webp'
+  hoverVideo: './media/placeholder-video.mp4'
   alt: 'A placeholder image showing a complex system architecture diagram.'
 ---
 
@@ -26,7 +26,3 @@ media:
 - Created a detailed migration plan to ensure a phased, low-risk rollout.
 
 **Result:** The new architecture is projected to exceed performance goals. The migration plan was approved by leadership, and initial feedback on the DevEx improvements has been extremely positive, with a 40% increase in the baseline satisfaction score after the first phase.
-
-## Full Case Study
-
-TODO: This is where the full, detailed case study for Project Beta would go. It would include sections on research, ideation, design process, technical implementation, and outcomes. For now, it is a placeholder.
