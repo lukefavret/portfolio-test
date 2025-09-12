@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import preact from "@astrojs/preact";
+import sitemap from '@astrojs/sitemap'
 
 /**
  * Astro Configuration
@@ -30,13 +31,15 @@ export default defineConfig({
     // Preact integration for interactive components.
     // This allows us to use `.tsx` files for components that need client-side JavaScript,
     // following Astro's island architecture for minimal JS delivery.
-    preact()
+    preact(),
+    // Sitemap generation for SEO.
+    // This automatically creates a sitemap.xml based on the site's pages and content.
+    sitemap(),
   ],
 
   // Site-wide metadata.
   // This is used for SEO and in places like the RSS feed or sitemap.
-  // TODO: The user should replace these placeholder values.
-  site: 'https://example.com',
+  site: 'https://lukefavret.com',
 
   // TypeScript compiler options.
   // We enforce strict mode to catch common errors and ensure code quality.

@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import Tag from '@components/ui/Tag.astro';
 import Icon from '@components/utility/Icon.astro';
 import Button from '@components/ui/Button.astro';
+import { Image } from 'astro:assets';
 
 /**
  * Project Card Component
@@ -40,7 +41,7 @@ const buttonClasses = 'text-xs px-4 py-2';
       <!-- This is always present for layout stability and as a poster. -->
       {
         media.thumbnailImage && (
-          <img
+          <Image
             src={media.thumbnailImage}
             alt={media.alt}
             width="1600"

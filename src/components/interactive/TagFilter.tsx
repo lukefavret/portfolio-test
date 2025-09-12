@@ -94,15 +94,20 @@ export default function TagFilter({ projects, filteredCount }: Props) {
             </button>
           );
         })}
-        {/* The "Clear All" button is only visible if there are active filters. */}
-        {activeTags.size > 0 && (
-          <button
-            onClick={handleClearClick}
-            class="focus-ring font-mono text-sm uppercase text-accent px-1 py-1 border border-text hover:underline"
-          >
-            Clear All
-          </button>
-        )}
+        {/* Always render the "Clear All" button to avoid layout shifts.
+            When there are no active tags it is visually hidden but still takes up
+            space so the tag buttons don't jump. We also set aria-hidden so
+            screen readers won't announce it when it's inactive. */}
+        <button
+          onClick={handleClearClick}
+          class={`focus-ring font-mono text-sm uppercase text-accent px-1 py-1 border border-text hover:underline transition-opacity duration-200 ${
+            activeTags.size === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          }`}
+          aria-hidden={activeTags.size === 0}
+          tabIndex={activeTags.size === 0 ? -1 : 0}
+        >
+          Clear All
+        </button>
       </div>
       {/*
         ACCESSIBILITY: ARIA Live Region

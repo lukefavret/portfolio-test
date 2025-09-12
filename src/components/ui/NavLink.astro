@@ -32,10 +32,17 @@ const { href } = Astro.props;
 // need to handle that for accurate comparison.
 const isActive =
   href === Astro.url.pathname || href === Astro.url.pathname.slice(0, -1);
+
+// Reserve a reasonable inline min-width to prevent a flash-of-unstyled-layout
+// where links appear wide before the stylesheet (or font metrics) load and
+// then contract. Using inline style ensures the browser applies it immediately.
+// 6.5rem (~104px) covers the typical label lengths used in this site's nav.
+const inlineMinWidth = '6.5rem';
 ---
 
 <a
   href={href}
+  style={`min-width: ${inlineMinWidth}`}
   class:list={[
     // Reserve a full 2px transparent border to avoid layout shift on hover/active.
     // Center the label horizontally and vertically.
