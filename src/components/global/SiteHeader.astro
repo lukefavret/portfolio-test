@@ -2,6 +2,7 @@
 // src/components/global/SiteHeader.astro
 import NavLink from '@components/ui/NavLink.astro';
 import MobileNav from '@components/interactive/MobileNav.tsx';
+import DarkModeToggle from '@components/interactive/DarkModeToggle.tsx';
 
 /**
  * Site Header Component
@@ -80,6 +81,11 @@ const { class: className } = Astro.props;
           </ul>
         </nav>
       </MobileNav>
+    </div>
+    
+    <!-- Utilities: Dark mode toggle -->
+    <div class="ml-4 flex items-center">
+      <DarkModeToggle client:load />
     </div>
   </div>
 </header>

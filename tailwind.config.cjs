@@ -18,6 +18,8 @@ const defaultTheme = require('tailwindcss/defaultTheme');
  * - Focus Ring: A custom focus-visible utility is added for accessibility.
  */
 module.exports = {
+  // Use class strategy so dark mode is controlled via a 'dark' class on <html>
+  darkMode: 'class',
   // Specifies the files to scan for Tailwind classes.
   // This includes Astro components, layouts, pages, and Preact components.
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],

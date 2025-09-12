@@ -30,3 +30,4 @@ a11y-report.json
 # OS-specific
 .DS_Store
 Thumbs.db
+public/resume.pdf
