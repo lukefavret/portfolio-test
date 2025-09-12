@@ -66,6 +66,23 @@ const fullTitle = `${title} | Luke Favret`;
 <!doctype html>
 <html lang="en" class="scroll-pt-16">
   <head>
+    <!-- Run theme initializer as early as possible to avoid flicker -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    </script>
+    <noscript>
+      <style>html{background:#fff;color:#222}</style>
+    </noscript>
+
     <!-- Basic meta tags for character set and viewport responsiveness. -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,7 +110,8 @@ const fullTitle = `${title} | Luke Favret`;
     <link rel="preload" as="font" href={ibmMono400Url} type="font/woff2" crossorigin>
     <link rel="preload" as="font" href={ibmMono500Url} type="font/woff2" crossorigin>
 
-    
+  <!-- (Original larger initializer removed; minimal initializer is at the top of the head.) -->
+
 
     <!-- Open Graph (Facebook, etc.) and Twitter Card meta tags for social sharing. -->
     <meta property="og:title" content={fullTitle} />

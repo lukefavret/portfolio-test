@@ -54,16 +54,25 @@ export default function DarkModeToggle() {
       const next = !Boolean(isDark);
       setIsDark(next);
       if (next) {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+  document.documentElement.classList.add('dark');
+  document.documentElement.classList.remove('light');
+  document.documentElement.setAttribute('data-theme', 'dark');
+  // Immediate paint: inline vars and styles to avoid flash
+  document.documentElement.style.setProperty('--color-bg', '20 20 22');
+  document.documentElement.style.setProperty('--color-text', '235 235 235');
+  document.documentElement.style.backgroundColor = 'rgb(20,20,22)';
+  document.documentElement.style.color = 'rgb(235,235,235)';
+  localStorage.setItem('theme', 'dark');
       } else {
-        document.documentElement.classList.remove('dark');
-        // Add a 'light' class so our CSS prefers-color-scheme fallback won't re-apply dark variables
-        document.documentElement.classList.add('light');
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+  document.documentElement.classList.remove('dark');
+  // Add a 'light' class so our CSS prefers-color-scheme fallback won't re-apply dark variables
+  document.documentElement.classList.add('light');
+  document.documentElement.setAttribute('data-theme', 'light');
+  document.documentElement.style.setProperty('--color-bg', '248 247 241');
+  document.documentElement.style.setProperty('--color-text', '34 34 34');
+  document.documentElement.style.backgroundColor = 'rgb(248,247,241)';
+  document.documentElement.style.color = 'rgb(34,34,34)';
+  localStorage.setItem('theme', 'light');
       }
     } catch (e) {
       // ignore

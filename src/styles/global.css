@@ -92,23 +92,8 @@
     --color-surfaceSecondary: 22 22 24;
   }
 
-  /* Respect system preference on first load: set dark class on html when pref is dark.
-     This doesn't mutate DOM here, but provides a CSS-only fallback for users without JS.
-     Modern browsers support the prefers-color-scheme media query; this helps avoid
-     a flash of light when the system prefers dark. */
-  @media (prefers-color-scheme: dark) {
-    /* Only apply system dark when the document does not explicitly request light via attribute */
-    :root:not([data-theme="light"]) {
-      /* If user hasn't explicitly added a light class, assume dark variables. */
-      --color-bg: 20 20 22;
-      --color-text: 235 235 235;
-      --color-textSecondary: 170 170 170;
-      --color-textTertiary: 110 110 110;
-      --color-accent: 130 170 190;
-      --color-surface: 28 28 30;
-      --color-surfaceSecondary: 22 22 24;
-    }
-  }
+  /* System prefers-color-scheme fallback removed: theme is controlled via inline script and data-theme/class.
+     This avoids the browser applying a system dark theme before our initializer runs. */
 
   /* Respect user preference for reduced motion. */
   @media (prefers-reduced-motion: reduce) {
