@@ -2,7 +2,7 @@
 title: 'ARC³ Case Framework'
 summary: 'Evidence-First Case Studies A rigorous, dual-lane (Impact/Evidence) method for writing portfolio-ready case studies with explicit success criteria, ablations, and GO/PIVOT/PAUSE decision gates.'
 date: '2025-09-01'
-tags: ['Research Methods', 'UX', 'HCI']
+tags: ['Research', 'UX', 'HCI']
 discipline: 'Methodology & Writing System'
 displayedDate: 'Summer 2025'
 hasPrototype: false

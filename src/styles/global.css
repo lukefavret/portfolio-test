@@ -230,7 +230,7 @@
    * customization and ensuring text contrast is maintained.
    * =================================================================
    */
-  .tag-ux-design {
+  .tag-ux {
     --tag-bg: #add8e6;
     /* lightblue */
     background-color: var(--tag-bg);
@@ -244,14 +244,14 @@
     color: var(--color-text);
   }
 
-  .tag-full-stack-dev {
+  .tag-hci {
     --tag-bg: #f08080;
     /* lightcoral */
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
 
-  .tag-branding {
+  .tag-ui {
     --tag-bg: #ffb6c1;
     /* lightpink */
     background-color: var(--tag-bg);
