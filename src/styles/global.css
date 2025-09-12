@@ -140,6 +140,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Smooth, very quick transitions for theme color changes. Kept short to avoid
+     hiding fast interactions while softening paint artifacts. */
+  :root,
+  html,
+  body {
+    transition: background-color 160ms linear, color 160ms linear;
+  }
+
   /*
    * -----------------------------------------------------------------
    * HEADING STYLES

@@ -48,8 +48,8 @@ const { class: className } = Astro.props;
       <span class="sr-only">Portfolio Home</span>
     </a>
 
-    <!-- Right side: Desktop nav and utilities -->
-    <div class="flex items-center space-x-4 h-full">
+  <!-- Right side: Desktop nav, mobile nav button, and utilities -->
+  <div class="flex items-center space-x-4 h-full">
       <!-- Desktop Navigation (Visible on large screens) -->
       <nav aria-label="Primary" class="hidden lg:block h-full">
         <ul class="flex h-full items-stretch font-body">
@@ -63,14 +63,14 @@ const { class: className } = Astro.props;
         </ul>
       </nav>
 
-      <!-- Utilities: Dark mode toggle -->
-  <div class="hidden lg:flex items-center h-full">
+      <!-- Utilities: Dark mode toggle (visible on desktop only; mobile placed inside MobileNav) -->
+      <div class="hidden lg:flex items-center h-full">
         <DarkModeToggle client:load />
       </div>
     </div>
 
-  <!-- Mobile Navigation (Visible on small screens) -->
-  <div class="z-50 lg:hidden">
+    <!-- Mobile Navigation (Visible on small screens). Keep it here so hamburger stays on the right. -->
+    <div class="z-50 lg:hidden">
       <MobileNav client:load>
         <!-- The content of the mobile nav panel is passed as a child -->
         <nav
@@ -87,6 +87,14 @@ const { class: className } = Astro.props;
               ))
             }
           </ul>
+
+          <!-- Mobile utilities row below links: place controls horizontally here -->
+          <div class="mt-8 flex w-full justify-center">
+            <div class="flex items-center gap-4">
+              <DarkModeToggle client:load />
+              <!-- Future controls can be added here in a row -->
+            </div>
+          </div>
         </nav>
       </MobileNav>
     </div>
