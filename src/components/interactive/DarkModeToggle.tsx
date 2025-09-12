@@ -9,7 +9,15 @@ import { h } from 'preact';
 // - Button toggles between dark and light, persists choice, and updates the <html> class.
 
 export default function DarkModeToggle() {
-  const [isDark, setIsDark] = useState<boolean | null>(null);
+  // Initialize from the already-applied <html> class so the icon matches the page on first paint
+  const [isDark, setIsDark] = useState<boolean | null>(() => {
+    try {
+      if (typeof document !== 'undefined') {
+        return document.documentElement.classList.contains('dark');
+      }
+    } catch (e) {}
+    return null;
+  });
 
   useEffect(() => {
     try {
@@ -88,23 +96,20 @@ export default function DarkModeToggle() {
       class="inline-flex items-center justify-center w-10 h-10 rounded-md border border-current bg-transparent hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
     >
       {/* Simple icon: sun/moon using SVG */}
-      {isDark ? (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden>
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden>
-          <circle cx="12" cy="12" r="5"></circle>
-          <path d="M12 1v2"></path>
-          <path d="M12 21v2"></path>
-          <path d="M4.22 4.22l1.42 1.42"></path>
-          <path d="M18.36 18.36l1.42 1.42"></path>
-          <path d="M1 12h2"></path>
-          <path d="M21 12h2"></path>
-          <path d="M4.22 19.78l1.42-1.42"></path>
-          <path d="M18.36 5.64l1.42-1.42"></path>
-        </svg>
-      )}
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden>
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden>
+        <circle cx="12" cy="12" r="5"></circle>
+        <path d="M12 1v2"></path>
+        <path d="M12 21v2"></path>
+        <path d="M4.22 4.22l1.42 1.42"></path>
+        <path d="M18.36 18.36l1.42 1.42"></path>
+        <path d="M1 12h2"></path>
+        <path d="M21 12h2"></path>
+        <path d="M4.22 19.78l1.42-1.42"></path>
+        <path d="M18.36 5.64l1.42-1.42"></path>
+      </svg>
     </button>
   );
 }

@@ -48,21 +48,29 @@ const { class: className } = Astro.props;
       <span class="sr-only">Portfolio Home</span>
     </a>
 
-    <!-- Desktop Navigation (Visible on large screens) -->
-    <nav aria-label="Primary" class="hidden h-full lg:block">
-      <ul class="flex h-full items-stretch font-body">
-        {
-          navLinks.map((link) => (
-            <li class="flex h-full">
-              <NavLink href={link.href}>{link.text}</NavLink>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <!-- Right side: Desktop nav and utilities -->
+    <div class="flex items-center space-x-4 h-full">
+      <!-- Desktop Navigation (Visible on large screens) -->
+      <nav aria-label="Primary" class="hidden lg:block h-full">
+        <ul class="flex h-full items-stretch font-body">
+          {
+            navLinks.map((link) => (
+              <li class="flex h-full">
+                <NavLink href={link.href}>{link.text}</NavLink>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
 
-    <!-- Mobile Navigation (Visible on small screens) -->
-    <div class="z-50 lg:hidden">
+      <!-- Utilities: Dark mode toggle -->
+  <div class="hidden lg:flex items-center h-full">
+        <DarkModeToggle client:load />
+      </div>
+    </div>
+
+  <!-- Mobile Navigation (Visible on small screens) -->
+  <div class="z-50 lg:hidden">
       <MobileNav client:load>
         <!-- The content of the mobile nav panel is passed as a child -->
         <nav
@@ -83,9 +91,5 @@ const { class: className } = Astro.props;
       </MobileNav>
     </div>
     
-    <!-- Utilities: Dark mode toggle -->
-    <div class="ml-4 flex items-center">
-      <DarkModeToggle client:load />
-    </div>
   </div>
 </header>

@@ -308,6 +308,22 @@
 
   /* ...existing code... */
 
+  /* Dark mode toggle icon visibility: paint-time controlled to avoid flicker
+     Both icons are rendered; CSS decides which is visible based on html.dark */
+  .icon-moon,
+  .icon-sun {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Default: show sun, hide moon (light mode). When html has .dark, invert. */
+  .icon-moon { display: none; }
+  .icon-sun { display: inline-block; }
+
+  html.dark .icon-moon { display: inline-block; }
+  html.dark .icon-sun { display: none; }
+
   /*
  * =================================================================
  * MOBILE NAVIGATION
