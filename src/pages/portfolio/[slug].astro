@@ -1,6 +1,11 @@
 ---
 // src/pages/portfolio/[slug].astro
-import { getCollection, type CollectionEntry } from 'astro:content';
+import {
+  getCollection,
+  getEntry,
+  type CollectionEntry,
+} from 'astro:content';
+import type { ProjectFrontmatter } from '@content/config';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import MetaBar from '@components/ui/MetaBar.astro';
 import HeroFigure from '@components/ui/HeroFigure.astro';
@@ -19,8 +24,13 @@ import Icon from '@components/utility/Icon.astro';
  */
 
 // This function tells Astro which pages to build.
+// Type representing a summary project entry (excludes full case studies).
+type ProjectEntry = CollectionEntry<'projects'> & { data: ProjectFrontmatter };
+
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
+  const projects = (await getCollection('projects')).filter(
+    (entry): entry is ProjectEntry => !('caseStudy' in entry.data)
+  );
   return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project },
@@ -30,12 +40,19 @@ export async function getStaticPaths() {
 // --- PROPS ---
 // The `project` prop is passed from `getStaticPaths`.
 type Props = {
-  project: CollectionEntry<'projects'>;
+  project: ProjectEntry;
 };
 
 const { project } = Astro.props;
 const { Content } = await project.render();
 const { title, summary, date, discipline, displayedDate } = project.data;
+
+// Attempt to load the full case study associated with this project.
+const caseStudyEntry = await getEntry('projects', `${project.slug}/case-study`);
+let CaseStudyContent;
+if (caseStudyEntry) {
+  CaseStudyContent = (await caseStudyEntry.render()).Content;
+}
 
 // Format the date for display in the MetaBar.
 const formattedPublishDate = date.toLocaleDateString('en-US', {
@@ -103,13 +120,13 @@ const formattedPublishDate = date.toLocaleDateString('en-US', {
           fig. 3. Full Case Study
         </h2>
         <div class="prose prose-lg mx-auto mt-8 max-w-prose">
-          <!-- TODO: Replace this with the actual detailed content from the CMS/Markdown. -->
-          <p>
-            This section would contain the full, unrolled case study, with
-            detailed explanations, more images, and in-depth analysis of the
-            project's lifecycle. For this placeholder, we are just showing
-            this explanatory text.
-          </p>
+          {
+            CaseStudyContent ? (
+              <CaseStudyContent />
+            ) : (
+              <p>Full case study coming soon.</p>
+            )
+          }
         </div>
       </section>
     </div>

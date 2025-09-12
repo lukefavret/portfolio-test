@@ -1,6 +1,7 @@
 ---
 // src/pages/index.astro
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import type { ProjectFrontmatter } from '@content/config';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ProjectCard from '@components/ui/ProjectCard.astro';
 import Button from '@components/ui/Button.astro';
@@ -16,8 +17,16 @@ import Button from '@components/ui/Button.astro';
  * them in a responsive grid using the `ProjectCard` component.
  */
 
-// Fetch all projects from the content collection.
-const allProjects = await getCollection('projects');
+// Type representing a summary project entry (excludes full case studies).
+type ProjectEntry = CollectionEntry<'projects'> & { data: ProjectFrontmatter };
+
+// Narrow entries to only project summaries (ignore full case study files).
+function isProjectEntry(entry: CollectionEntry<'projects'>): entry is ProjectEntry {
+  return !('caseStudy' in entry.data);
+}
+
+// Fetch all projects and filter out case studies.
+const allProjects = (await getCollection('projects')).filter(isProjectEntry);
 
 // Sort projects by date in descending order (newest first).
 const sortedProjects = allProjects.sort(

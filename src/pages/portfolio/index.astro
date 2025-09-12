@@ -1,6 +1,7 @@
 ---
 // src/pages/portfolio/index.astro
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import type { ProjectFrontmatter } from '@content/config';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import TagFilter from '@components/interactive/TagFilter.tsx';
 
@@ -16,8 +17,16 @@ import TagFilter from '@components/interactive/TagFilter.tsx';
  * seamless user experience.
  */
 
+// Type representing a summary project entry (excludes full case studies).
+type ProjectEntry = CollectionEntry<'projects'> & { data: ProjectFrontmatter };
+
+// Narrow entries to only project summaries (ignore full case study files).
+function isProjectEntry(entry: CollectionEntry<'projects'>): entry is ProjectEntry {
+  return !('caseStudy' in entry.data);
+}
+
 // Fetch all projects and sort them newest first.
-const allProjects = await getCollection('projects');
+const allProjects = (await getCollection('projects')).filter(isProjectEntry);
 const sortedProjects = allProjects.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );

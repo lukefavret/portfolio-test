@@ -87,14 +87,17 @@ The application will be available at `http://localhost:4321`.
 
 ### Adding a New Project
 
-1.  Create a new Markdown file in `src/content/projects/`, for example `my-new-project.md`.
-2.  Add the required frontmatter fields as defined in the schema (`src/content/config.ts`).
-3.  Write the project's "STAR Overview" in the body of the Markdown file.
-4.  Add your media assets to `public/media/` and update the `media` frontmatter fields.
+1.  Create a new folder in `src/content/projects/`, e.g. `my-new-project/`.
+2.  Inside the folder add:
+    - `index.md` – contains the project metadata and "STAR Overview" summary.
+    - `case-study.md` – contains the full case study body and a `caseStudy: true` flag in its frontmatter.
+    - `media/` – place all project-specific images and videos here.
+3.  Reference media with relative paths in `index.md` (e.g. `./media/thumbnail.png`).
+4.  The site will automatically render the summary and, when present, the separate full case study.
 
 ### Media Pipeline
 
-For optimal performance, media should be carefully optimized.
+Media lives alongside each project inside its `media/` subfolder. For optimal performance, optimize all assets before committing.
 
 -   **Images**:
     -   Run images through an optimizer like [ImageOptim](https://imageoptim.com/mac) or [Squoosh](https://squoosh.app/).

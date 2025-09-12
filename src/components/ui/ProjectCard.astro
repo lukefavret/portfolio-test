@@ -1,10 +1,10 @@
 ---
 // src/components/ui/ProjectCard.astro
 import type { CollectionEntry } from 'astro:content';
+import type { ProjectFrontmatter } from '@content/config';
 import Tag from '@components/ui/Tag.astro';
 import Icon from '@components/utility/Icon.astro';
 import Button from '@components/ui/Button.astro';
-import { Image } from 'astro:assets';
 
 /**
  * Project Card Component
@@ -21,12 +21,43 @@ import { Image } from 'astro:assets';
 // --- PROPS ---
 export interface Props {
   /** The project data from the Astro content collection. */
-  project: CollectionEntry<'projects'>;
+  project: CollectionEntry<'projects'> & { data: ProjectFrontmatter };
 }
 
 const { project } = Astro.props;
 const { slug, data } = project;
 const { title, summary, tags, media, hasPrototype, prototypeUrl, repoUrl } = data;
+
+// Resolve thumbnail and hover video sources from the project's folder, if provided.
+const imageImports = import.meta.glob(
+  '../../content/projects/**/*.{png,jpg,jpeg,webp,avif,gif}',
+  { eager: true, query: '?url' }
+);
+const videoImports = import.meta.glob('../../content/projects/**/*.{webm,mp4}', {
+  eager: true,
+});
+
+const normalizedThumb = media.thumbnailImage?.replace(/^\.\//, '');
+const thumbKey = normalizedThumb
+  ? `../../content/projects/${slug}/${normalizedThumb}`
+  : undefined;
+const thumbnailSrc = thumbKey && imageImports[thumbKey]
+  ? (imageImports[thumbKey] as any).default
+  : undefined;
+
+const normalizedHover = media.hoverVideo?.replace(/^\.\//, '');
+const hoverWebmKey = normalizedHover
+  ? `../../content/projects/${slug}/${normalizedHover}`
+  : undefined;
+const hoverMp4Key = normalizedHover
+  ? `../../content/projects/${slug}/${normalizedHover.replace('.webm', '.mp4')}`
+  : undefined;
+const hoverWebmSrc = hoverWebmKey && videoImports[hoverWebmKey]
+  ? (videoImports[hoverWebmKey] as any).default
+  : undefined;
+const hoverMp4Src = hoverMp4Key && videoImports[hoverMp4Key]
+  ? (videoImports[hoverMp4Key] as any).default
+  : undefined;
 
 // Shared classes for the small action buttons on the card.
 const buttonClasses = 'text-xs px-4 py-2';
@@ -39,51 +70,51 @@ const buttonClasses = 'text-xs px-4 py-2';
     <a href={`/portfolio/${slug}/`} class="focus-ring block overflow-hidden rounded-sm">
       <!-- Fallback Thumbnail Image -->
       <!-- This is always present for layout stability and as a poster. -->
-      {
-        media.thumbnailImage && (
-          <Image
-            src={media.thumbnailImage}
-            alt={media.alt}
-            width="1600"
-            height="900"
-            class="aspect-video w-full object-cover transition-opacity duration-300"
-            loading="eager"
-          />
-        )
-      }
+        {
+          thumbnailSrc && (
+            <img
+              src={thumbnailSrc}
+              alt={media.alt}
+              width="1600"
+              height="900"
+              class="aspect-video w-full object-cover transition-opacity duration-300"
+              loading="eager"
+            />
+          )
+        }
 
       <!-- Hover Video -->
       <!-- The video is hidden by default and is revealed on hover (if not reduced motion). -->
-      {
-        media.hoverVideo && (
-          <video
-            width="1600"
-            height="900"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            class="project-video pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            aria-hidden="true"
-          >
-            <source src={media.hoverVideo} type="video/webm" />
-            <source src={media.hoverVideo.replace('.webm', '.mp4')} type="video/mp4" />
-          </video>
-        )
-      }
+        {
+          hoverWebmSrc && (
+            <video
+              width="1600"
+              height="900"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              class="project-video pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <source src={hoverWebmSrc} type="video/webm" />
+              {hoverMp4Src && <source src={hoverMp4Src} type="video/mp4" />}
+            </video>
+          )
+        }
 
       <!-- Play Indicator -->
       <!-- This '►' symbol indicates that a hover video is available. -->
-      {
-        media.hoverVideo && (
-          <div
-            class="play-indicator absolute left-2 top-2 z-10 flex h-6 w-8 items-center justify-center rounded-none bg-black text-white opacity-60 transition-opacity duration-300 group-hover:opacity-90"
-            aria-hidden="true"
-          >
-            <Icon name="play" class="h-4 w-4" />
-          </div>
-        )
-      } 
+        {
+          hoverWebmSrc && (
+            <div
+              class="play-indicator absolute left-2 top-2 z-10 flex h-6 w-8 items-center justify-center rounded-none bg-black text-white opacity-60 transition-opacity duration-300 group-hover:opacity-90"
+              aria-hidden="true"
+            >
+              <Icon name="play" class="h-4 w-4" />
+            </div>
+          )
+        }
     </a>
   </div>
   <div class="pt-4"></div>
