@@ -28,6 +28,8 @@
 @import "@fontsource/cormorant-garamond/400.css";
 @import "@fontsource/cormorant-garamond/700.css";
 
+@import "@fontsource/cormorant-sc/700.css";
+
 /* IBM Plex Mono for code blocks, accents */
 @import "@fontsource/ibm-plex-mono/400.css";
 @import "@fontsource/ibm-plex-mono/500.css";
@@ -54,16 +56,20 @@
      * --color-accent: The accent color for links, highlights, and active states.
      * --color-surface: A secondary background color for UI elements like headers or cards.
      */
-    --color-bg: #f8f7f1;
-    /* Original: #f8f7f1 */
-    --color-text: #222222;
-    /* Original: #222222 */
-    --color-textSecondary: #4A4A4A;
-    /* Original: #4A4A4A */
-    --color-accent: #3b4c58;
-    /* Original: #3b4c58 */
-    --color-surface: #fbf6e8;
-    /* Original: #fbf6e8 */
+    --color-bg: 248 247 241;
+    /* was #f8f7f1 */
+    --color-text: 34 34 34;
+    /* was #222222 */
+    --color-textSecondary: 74 74 74;
+    /* was #4A4A4A */
+    --color-textTertiary: 200 200 200;
+    /* was #9E9E9E */
+    --color-accent: 59 76 88;
+    /* was #3b4c58 */
+    --color-surface: 251 246 232;
+    /* was #fbf6e8 */
+    --color-surfaceSecondary: 255 255 252;
+    /* was #fbf6e8 */
 
     /* Base font settings */
     font-family: theme('fontFamily.body');
@@ -73,6 +79,21 @@
     /* Enable smooth scrolling, but respect user preference for reduced motion. */
     scroll-behavior: smooth;
   }
+
+  /* Dark mode variables when the 'dark' class or data-theme="dark" is present on <html> */
+  .dark,
+  [data-theme="dark"] {
+    --color-bg: 20 20 22; /* near black */
+    --color-text: 235 235 235; /* near white */
+    --color-textSecondary: 170 170 170;
+    --color-textTertiary: 110 110 110;
+    --color-accent: 130 170 190; /* muted accent */
+    --color-surface: 28 28 30;
+    --color-surfaceSecondary: 22 22 24;
+  }
+
+  /* System prefers-color-scheme fallback removed: theme is controlled via inline script and data-theme/class.
+     This avoids the browser applying a system dark theme before our initializer runs. */
 
   /* Respect user preference for reduced motion. */
   @media (prefers-reduced-motion: reduce) {
@@ -96,20 +117,35 @@
     /* 16px */
     line-height: 1.5;
 
-    /*
-     * Prevent layout shift when navigating between pages that do and do not
-     * produce a vertical scrollbar. This keeps the header/logo from "jumping".
-     * `scrollbar-gutter` is the modern approach; `overflow-y: scroll` is a
-     * widely supported fallback to always reserve space for the scrollbar.
-     */
-    scrollbar-gutter: stable both-edges;
-    overflow-y: scroll;
+    /* Reserve vertical scrollbar space to avoid horizontal layout shifts
+       when the vertical scrollbar appears/disappears. */
+    scrollbar-gutter: stable;
+
+    /* Allow the browser to show the scrollbar as needed. */
+    overflow-y: auto;
   }
+
+  /* If the browser doesn't support scrollbar-gutter, always show the
+     vertical scrollbar to avoid shifting. */
+  @supports not (scrollbar-gutter: stable) {
+    html {
+      overflow-y: scroll;
+    }
+  }
+
 
   /* Apply a subtle text rendering optimization. */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth, very quick transitions for theme color changes. Kept short to avoid
+     hiding fast interactions while softening paint artifacts. */
+  :root,
+  html,
+  body {
+    transition: background-color 160ms linear, color 160ms linear;
   }
 
   /*
@@ -167,6 +203,12 @@
     margin: 2rem 0;
   }
 
+  .editorial-rule-light {
+    border: none;
+    border-top: 1px solid theme('colors.textTertiary');
+    margin: 2rem 0;
+  }
+
   /* Style for figure numbers, e.g., "fig. 1." */
   .fig-label {
     font-family: theme('fontFamily.mono');
@@ -188,7 +230,7 @@
    * customization and ensuring text contrast is maintained.
    * =================================================================
    */
-  .tag-ux-design {
+  .tag-ux {
     --tag-bg: #add8e6;
     /* lightblue */
     background-color: var(--tag-bg);
@@ -202,14 +244,14 @@
     color: var(--color-text);
   }
 
-  .tag-full-stack-dev {
+  .tag-hci {
     --tag-bg: #f08080;
     /* lightcoral */
     background-color: var(--tag-bg);
     color: var(--color-text);
   }
 
-  .tag-branding {
+  .tag-ui {
     --tag-bg: #ffb6c1;
     /* lightpink */
     background-color: var(--tag-bg);
@@ -235,6 +277,93 @@
     /* lightcyan */
     background-color: var(--tag-bg);
     color: var(--color-text);
+  }
+
+  .extended-borders {
+    position: relative;
+    overflow: visible; /* allow pseudo elements to show outside the box */
+  }
+
+  /* ::before draws horizontal lines (top & bottom) and extends left/right */
+  .extended-borders::before {
+    content: "";
+    position: absolute;
+    left: -12px;    /* extend amount left */
+    right: -12px;   /* extend amount right */
+    top: 0;
+    bottom: 0;      /* span full height so we can place both top and bottom borders */
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-top-color: inherit;
+    border-bottom-color: inherit;
+    pointer-events: none;
+  }
+
+  /* ::after draws vertical lines (left & right) and extends top/bottom */
+  .extended-borders::after {
+    content: "";
+    position: absolute;
+    top: -12px;      /* extend amount above */
+    bottom: -12px;   /* extend amount below */
+    left: 0;
+    right: 0;       /* span full width so we can place both left and right borders */
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-left-color: inherit;
+    border-right-color: inherit;
+    pointer-events: none;
+  }
+
+  /* ...existing code... */
+
+  /* Dark mode toggle icon visibility: paint-time controlled to avoid flicker
+     Both icons are rendered; CSS decides which is visible based on html.dark */
+  .icon-moon,
+  .icon-sun {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Default: show sun, hide moon (light mode). When html has .dark, invert. */
+  .icon-moon { display: none; }
+  .icon-sun { display: inline-block; }
+
+  html.dark .icon-moon { display: inline-block; }
+  html.dark .icon-sun { display: none; }
+
+  /*
+ * =================================================================
+ * MOBILE NAVIGATION
+ *
+ * Styles and animations for the mobile navigation menu.
+ * =================================================================
+ */
+
+  /*
+  * Animation for the mobile navigation panel.
+  * It creates a subtle fade-in and scale-up effect.
+  */
+  @keyframes panel-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Apply the entrance animation to the mobile nav panel. */
+  #mobile-nav-panel {
+    /*
+    * The `transform-origin` is set to the top right, so the panel
+    * appears to expand from the hamburger button's location.
+    */
+    transform-origin: top right;
+    animation: panel-enter 150ms ease-out;
   }
 }
 

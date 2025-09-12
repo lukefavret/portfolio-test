@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import Tag from '@components/ui/Tag.astro';
 import Icon from '@components/utility/Icon.astro';
 import Button from '@components/ui/Button.astro';
+import { Image } from 'astro:assets';
 
 /**
  * Project Card Component
@@ -31,7 +32,8 @@ const { title, summary, tags, media, hasPrototype, prototypeUrl, repoUrl } = dat
 const buttonClasses = 'text-xs px-4 py-2';
 ---
 
-<article class="group relative flex flex-col">
+<article class="group px-3 pb-3  relative flex flex-col bg-surfaceSecondary shadow-sm">
+  <div class="flex items-center justify-center h-3 pb-3"><div class="justify-center  h-3 w-12"></div></div>
   <!-- Media container for image and hover video -->
   <div class="relative bg-background">
     <a href={`/portfolio/${slug}/`} class="focus-ring block overflow-hidden rounded-sm">
@@ -39,13 +41,13 @@ const buttonClasses = 'text-xs px-4 py-2';
       <!-- This is always present for layout stability and as a poster. -->
       {
         media.thumbnailImage && (
-          <img
+          <Image
             src={media.thumbnailImage}
             alt={media.alt}
             width="1600"
             height="900"
             class="aspect-video w-full object-cover transition-opacity duration-300"
-            loading="lazy"
+            loading="eager"
           />
         )
       }
@@ -75,18 +77,18 @@ const buttonClasses = 'text-xs px-4 py-2';
       {
         media.hoverVideo && (
           <div
-            class="play-indicator absolute left-2 top-2 z-10 flex h-6 w-8 items-center justify-center rounded-none bg-accent text-background opacity-60 transition-opacity duration-300 group-hover:opacity-90"
+            class="play-indicator absolute left-2 top-2 z-10 flex h-6 w-8 items-center justify-center rounded-none bg-black text-white opacity-60 transition-opacity duration-300 group-hover:opacity-90"
             aria-hidden="true"
           >
             <Icon name="play" class="h-4 w-4" />
           </div>
         )
-      }
+      } 
     </a>
   </div>
-
+  <div class="pt-4"></div>
   <!-- Content section -->
-  <div class="flex flex-grow flex-col pt-4">
+  <div class="flex flex-grow flex-col">
     <h3 class="font-heading text-2xl font-bold">
       <a href={`/portfolio/${slug}/`} class="focus-ring hover:text-accent">
         {title}
@@ -104,14 +106,14 @@ const buttonClasses = 'text-xs px-4 py-2';
       )
     }
 
-    <p class="mt-2 flex-grow text-text/80">{summary}</p>
+    <p class="mt-2 flex-grow text-textSecondary">{summary}</p>
 
     <!-- Action Links -->
     <div class="mt-4 flex flex-wrap items-center gap-2 font-mono">
       <Button
         href={`/portfolio/${slug}/`}
         variant="tertiary"
-        iconRight="arrowRight"
+        iconRight="arrowLeftRight"
         class={buttonClasses}
       >
         see the process

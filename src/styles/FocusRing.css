@@ -34,7 +34,7 @@
    * via keyboard navigation.
    */
   .focus-ring:focus-visible {
-    outline: 4px solid var(--color-accent);
+    outline: 4px solid rgb(var(--color-accent));
     outline-offset: 4px;
     overflow: visible;
   }

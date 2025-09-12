@@ -18,6 +18,8 @@ const defaultTheme = require('tailwindcss/defaultTheme');
  * - Focus Ring: A custom focus-visible utility is added for accessibility.
  */
 module.exports = {
+  // Use class strategy so dark mode is controlled via a 'dark' class on <html>
+  darkMode: 'class',
   // Specifies the files to scan for Tailwind classes.
   // This includes Astro components, layouts, pages, and Preact components.
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -32,11 +34,34 @@ module.exports = {
       // Defines the color palette using CSS variables for easy theming.
       // The actual color values are set in `src/styles/global.css`.
       colors: {
-        background: 'var(--color-bg)',
-        text: 'var(--color-text)',
-        textSecondary: 'var(--color-textSecondary)',
-        accent: 'var(--color-accent)',
-        surface: 'var(--color-surface)',
+        background: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-bg) / ${opacityValue})`
+            : `rgb(var(--color-bg) / 1)`,
+        text: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-text) / ${opacityValue})`
+            : `rgb(var(--color-text) / 1)`,
+        textSecondary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-textSecondary) / ${opacityValue})`
+            : `rgb(var(--color-textSecondary) / 1)`,
+        textTertiary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-textTertiary) / ${opacityValue})`
+            : `rgb(var(--color-textTertiary) / 1)`,
+        accent: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-accent) / ${opacityValue})`
+            : `rgb(var(--color-accent) / 1)`,
+        surface: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-surface) / ${opacityValue})`
+            : `rgb(var(--color-surface) / 1)`,
+        surfaceSecondary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-surfaceSecondary) / ${opacityValue})`
+            : `rgb(var(--color-surfaceSecondary) / 1)`,
       },
 
       // Defines the custom font families for the project.
@@ -44,6 +69,8 @@ module.exports = {
       fontFamily: {
         // Serif for headings (editorial vibe)
         'heading': ['"Cormorant Garamond"', ...defaultTheme.fontFamily.serif],
+        // Serif for special headings (editorial vibe)
+        'headingSpecial': ['"Cormorant SC"', ...defaultTheme.fontFamily.serif],
         // Sans-serif for body text (highly legible)
         'body': ['"Atkinson Hyperlegible"', ...defaultTheme.fontFamily.sans],
         // Mono for figure captions and accents
@@ -56,6 +83,7 @@ module.exports = {
         DEFAULT: '0 2px 4px var(--tw-shadow-color)',
         lg: '0 8px 16px var(--tw-shadow-color)',
       },
+      
     },
   },
 

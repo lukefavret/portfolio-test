@@ -10,6 +10,7 @@ import font400Url from '@fontsource/atkinson-hyperlegible/files/atkinson-hyperle
 import font700Url from '@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-700-normal.woff2';
 import cormorant400Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-normal.woff2";
 import cormorant700Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2";
+import cormorantSc700Url from "@fontsource/cormorant-sc/files/cormorant-sc-latin-700-normal.woff2";
 import ibmMono400Url from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2";
 import ibmMono500Url from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2";
 
@@ -59,12 +60,29 @@ const {
 } = Astro.props;
 
 // Construct a full title for the <title> tag.
-const fullTitle = `${title} | Wright Portfolio`;
+const fullTitle = `${title} | Luke Favret`;
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-pt-16">
   <head>
+    <!-- Run theme initializer as early as possible to avoid flicker -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    </script>
+    <noscript>
+      <style>html{background:#fff;color:#222}</style>
+    </noscript>
+
     <!-- Basic meta tags for character set and viewport responsiveness. -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,11 +105,13 @@ const fullTitle = `${title} | Wright Portfolio`;
 
     <link rel="preload" as="font" href={cormorant400Url} type="font/woff2" crossorigin>
     <link rel="preload" as="font" href={cormorant700Url} type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href={cormorantSc700Url} type="font/woff2" crossorigin>
 
     <link rel="preload" as="font" href={ibmMono400Url} type="font/woff2" crossorigin>
     <link rel="preload" as="font" href={ibmMono500Url} type="font/woff2" crossorigin>
 
-    
+  <!-- (Original larger initializer removed; minimal initializer is at the top of the head.) -->
+
 
     <!-- Open Graph (Facebook, etc.) and Twitter Card meta tags for social sharing. -->
     <meta property="og:title" content={fullTitle} />
@@ -112,9 +132,10 @@ const fullTitle = `${title} | Wright Portfolio`;
       and screen reader users to bypass the navigation and jump directly
       to the main content. It is visually hidden until focused.
     -->
+    <!-- Skip to main content -->
     <a
       href="#main-content"
-      class="focus-ring absolute left-4 top-4 z-50 -translate-y-12 transform rounded-md bg-background p-3 font-bold text-accent transition-transform focus:translate-y-0"
+      class="focus-ring absolute left-4 top-4 z-50 -translate-y-16 transform rounded-md bg-accent p-3 font-bold text-background transition-all duration-150 opacity-0 pointer-events-none focus-visible:opacity-100 focus-visible:translate-y-0 focus-visible:pointer-events-auto"
     >
       Skip to main content
     </a>

@@ -28,7 +28,7 @@ const pageDescription =
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-12 lg:px-8">
     <!-- Page Header -->
     <header class="text-center">
       <h1 class="font-heading text-4xl font-bold tracking-wider sm:text-5xl">
@@ -40,12 +40,14 @@ const pageDescription =
       </p>
     </header>
 
+    <hr class="editorial-rule" />
+
     <!--
       Tag Filter Component
       - `client:load` ensures the component's JS is loaded as soon as possible.
       - We pass the full list of projects to the component so it can derive all unique tags.
     -->
-    <div class="mt-12">
+    <div class="mt-12 flex justify-center">
       <TagFilter
         client:load
         projects={sortedProjects}
@@ -53,7 +55,7 @@ const pageDescription =
       />
     </div>
 
-    <hr class="editorial-rule mt-8" />
+    <hr class="editorial-rule-light mt-8" />
 
     <!--
       Project List
@@ -62,11 +64,11 @@ const pageDescription =
     -->
     <section aria-labelledby="portfolio-heading">
       <h2 id="portfolio-heading" class="sr-only">All Projects</h2>
-      <ul class="flex flex-col gap-y-16">
+      <ul class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8" id="project-list">
         {
           sortedProjects.map((project) => (
             <li
-              class="project-item"
+              class="project-item bg-surfaceSecondary shadow-sm"
               data-tags={project.data.tags.join(',')}
             >
               <a

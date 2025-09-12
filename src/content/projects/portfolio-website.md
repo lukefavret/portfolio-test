@@ -1,13 +1,14 @@
 ---
-title: 'Project Beta: Revitalizing a Legacy System'
+title: 'Portfolio Website'
 summary: 'A comprehensive overhaul of an enterprise-level legacy system to improve developer experience and system performance.'
 date: '2025-05-15'
-tags: ['DevEx', 'Architecture', 'Research']
-discipline: 'Software Architecture'
+prestige: 1
+tags: ['UI', 'UX']
+discipline: 'WebDev'
 displayedDate: 'Spring 2025'
 hasPrototype: false
 media:
-  thumbnailImage: '/media/placeholder-16-9.png'
+  thumbnailImage: '/media/portfolio_web_thumbnail.webp'
   hoverVideo: '/media/placeholder-video.mp4'
   alt: 'A placeholder image showing a complex system architecture diagram.'
 ---
