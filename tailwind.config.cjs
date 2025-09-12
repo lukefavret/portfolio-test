@@ -56,6 +56,10 @@ module.exports = {
           opacityValue
             ? `rgb(var(--color-surface) / ${opacityValue})`
             : `rgb(var(--color-surface) / 1)`,
+        surfaceSecondary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgb(var(--color-surfaceSecondary) / ${opacityValue})`
+            : `rgb(var(--color-surfaceSecondary) / 1)`,
       },
 
       // Defines the custom font families for the project.
@@ -63,6 +67,8 @@ module.exports = {
       fontFamily: {
         // Serif for headings (editorial vibe)
         'heading': ['"Cormorant Garamond"', ...defaultTheme.fontFamily.serif],
+        // Serif for special headings (editorial vibe)
+        'headingSpecial': ['"Cormorant SC"', ...defaultTheme.fontFamily.serif],
         // Sans-serif for body text (highly legible)
         'body': ['"Atkinson Hyperlegible"', ...defaultTheme.fontFamily.sans],
         // Mono for figure captions and accents

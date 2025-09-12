@@ -33,7 +33,7 @@ const pageDescription =
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-12 lg:px-8 lg:py-12">
     <!-- Introduction Section -->
     <section class="text-center">
       <h1 class="font-heading text-4xl font-bold tracking-wider sm:text-5xl">
@@ -45,10 +45,10 @@ const pageDescription =
     </section>
 
     <!-- Featured Projects Section -->
-    <section class="mt-16 sm:mt-24">
+    <section class="mt-12 sm:mt-12">
       <h2 class="sr-only">Featured Projects</h2>
       <!-- Responsive grid for project cards -->
-      <div class="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-x-4 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
         {
           featuredProjects.map((project) => (
             <ProjectCard {project} />
@@ -58,7 +58,7 @@ const pageDescription =
     </section>
 
     <!-- Call to Action -->
-    <section class="mt-16 text-center sm:mt-24">
+    <section class="mt-12 text-center sm:mt-12">
       <Button href="/portfolio" variant="primary" class="text-lg">
         View All Projects
       </Button>

@@ -98,7 +98,7 @@ export default function TagFilter({ projects, filteredCount }: Props) {
         {activeTags.size > 0 && (
           <button
             onClick={handleClearClick}
-            class="focus-ring font-mono text-sm uppercase text-accent hover:underline"
+            class="focus-ring font-mono text-sm uppercase text-accent px-1 py-1 border border-text hover:underline"
           >
             Clear All
           </button>

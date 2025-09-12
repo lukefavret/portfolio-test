@@ -45,7 +45,8 @@ const formattedPublishDate = date.toLocaleDateString('en-US', {
 ---
 
 <BaseLayout title={title} description={summary}>
-  <article>
+  <div class="max-w-7xl pt-8 mx-auto w-full"></div>
+  <article class="max-w-7xl py-0 mx-auto w-full extended-borders">
     <!-- Metadata Bar at the top of the page. -->
     <MetaBar
       discipline={discipline}
@@ -55,10 +56,10 @@ const formattedPublishDate = date.toLocaleDateString('en-US', {
     <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <!-- Project Header -->
       <header class="text-center">
-        <h1 class="font-heading text-4xl font-bold uppercase tracking-wider sm:text-5xl">
+        <h1 class="font-headingSpecial text-4xl font-bold tracking-wider sm:text-5xl">
           {title}
         </h1>
-        <p class="mt-2 font-mono text-lg text-text/80">
+        <p class="mt-2 font-mono text-lg text-textSecondary">
           {displayedDate || formattedPublishDate}
         </p>
       </header>
@@ -79,6 +80,7 @@ const formattedPublishDate = date.toLocaleDateString('en-US', {
       <div id="star-overview" class="prose prose-lg mx-auto max-w-prose">
         <Content />
       </div>
+
 
       <!-- Call to Action Button to scroll to the full case study -->
       <div class="mt-16 text-center">

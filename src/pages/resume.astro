@@ -21,17 +21,24 @@ const pageDescription =
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-    <header class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+  <div class="mx-auto max-w-5xl px-4 py-12 justify-center sm:px-6 sm:py-12 lg:px-8">
+    <header class="flex flex-col items-center justify-center text-center gap-4 sm:flex-row">
       <div>
         <h1 class="font-heading text-4xl font-bold tracking-wider sm:text-5xl">
           Resume
         </h1>
-        <p class="mt-1 text-text/80">
+        <p class="text-textSecondary">
           A summary of my work and qualifications.
         </p>
+        
       </div>
-      <!-- Download Button is hidden on print -->
+      
+    </header>
+
+    <hr class="editorial-rule" />
+
+    <div class="mx-auto max-w-5xl px-4 pb-4 justify-center text-center sm:px-6  lg:px-8">
+        <!-- Download Button is hidden on print -->
       <Button
         href="/resume.pdf"
         target="_blank"
@@ -42,13 +49,13 @@ const pageDescription =
       >
         Download PDF
       </Button>
-    </header>
-
-    <hr class="editorial-rule" />
+    </div>
+    
 
     <!-- The 'resume-content' class is a hook for print styles. -->
     <article class="resume-content prose prose-lg max-w-[70ch] ">
       <!-- TODO: Replace all placeholder content below with your actual resume details. -->
+       
 
       <section>
         <h2>Summary</h2>
